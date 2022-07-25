@@ -1,0 +1,85 @@
+<%= render "header"%>
+<header class="header">
+    <nav>
+        <div class="logo_div">
+          <a href="/home"><%= image_tag("quest_logo.png") %></a>
+        </div>
+        <div class="filter_div">
+          <form action="/game">
+            <input type="text" name="game[pin]" id="pin" placeholder="PIN">
+            <button type="submit" class="game"><i class="fa-solid fa-gamepad"></i> Game</button>
+          </form>
+        </div>
+        <div class="option_div">
+          <%if current_user%>
+            <button class="create"  onclick="create()"><i class="fa-solid fa-plus"></i> Quest</button>
+            <button class="profile" id ="profile" onclick="profile_show()">
+              <% if current_user.profile_pic.attached? %>
+                <%= image_tag(current_user.profile_pic) %>
+              <% else %>
+                <i class="fa-solid fa-user"></i>
+              <% end %>
+            </button>
+          <%else%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i>Quest</button>'.html_safe, login_path, :class=>"create" %>
+            <%= link_to '<button><i class="fa-solid fa-user"></i></button>'.html_safe, login_path, :class=>"profile" %>
+          <%end%>
+        </div>
+    </nav>
+</header>
+<%if alert == nil %>
+<p id='alert'></p>
+<%else%>
+ <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
+<%end%>
+<div class="create_form display" id="create_form">
+  <form action="/game_create">
+    <input type="text" name="game[title]" id="title" placeholder="Game title" required onchange="check()">
+    <button type="submit">Create</button>
+  </form>
+</div>
+<div class="ass_main" id="ass_main">
+  <% @usersgame.each do |game|%>
+  <div class="ass_que">
+      <div class="que_detial">
+        <a href="/question/<%=game.title%>" class="add_que"></a>
+        <div class="queinfo_div">
+          <h2><%=game.title%></h2>
+          <div class="pin_div_show">
+        <% if game.status == "1"%>
+              <input type="text" name="pin" class="que_pin" id="que_pin" value="<%=game.pin%>" disabled>
+        <%else%>
+              <input type="password" name="pin" class="que_pin" id="que_pin" value="<%=game.pin%>" disabled>
+        <%end%>
+          </div>
+          
+        </div>
+        <div class="que_btn">
+        <% if game.status == "0"%>
+          <a href="start/<%=game.title%>" class="start_btn" id="start_btn">Start</a>
+        <%else%>
+          <a href="stop/<%=game.title%>" class="stop_btn" id="stop_btn">Stop</a>
+        <%end%>
+        </div>
+        <a href="" class="edit_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="" class="preview_btn"><i class="fa-solid fa-eye"></i></a>
+      </div>
+  </div>
+  <%end%>
+</div>
+  <%if current_user%>
+    <%= render "profile"%>
+  <%end%>
+
+<style>
+    .main_menu .assessment_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+</style>
+
+<script>
+  function create(){
+    document.getElementById('create_form').classList.toggle("display");
+  }
+</script>

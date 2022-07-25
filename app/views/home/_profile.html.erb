@@ -1,0 +1,99 @@
+<div class="main_profile" id="main_profile">
+  <div class="edit_profile_div" id="edit_profile_div"></div>
+  <div class="profile_change">
+    <div class="show_profile">
+    
+                      <% if current_user.profile_pic.attached? %>
+    <%= image_tag(current_user.profile_pic) %>
+    <% else %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+    </div>
+  </div>
+  <div class="profile_detial">
+    <div class="name_profile"><p><%=current_user.name%></p></div>
+    <div class="contact_div">
+      <h3>Contact information</h3>
+      <div class="table">
+         <div class="table_title">
+          <%if current_user%>
+          <p>Email</p>
+          <%end%>
+          
+          <%if @usercontacts.present? %>
+          <%if @usermobile.blank? %>
+          <p>Mobile</p>
+          <%end%>
+          
+          <%if @userwebsite.blank? %>
+          <p>Site</p>
+          <%end%>
+          
+          <%if @userlinkedin.blank? || @userbehance.blank? || @usergithub.blank? || @userinstagram.blank? %>
+          <p>Social</p>
+          <%end%>
+          <%end%>
+        </div>
+         <div class="table_detial">
+          <%if current_user%>
+          <p><%=current_user.email%></p>
+          <%end%>
+          
+ <%if @usercontacts.present? %>
+          <%if @usermobile.blank? %>
+          <p><%=@usercontacts.mobile%></p>
+          <%end%>
+          
+          <%if @userwebsite.blank? %>
+          <p><a href="<%=@usercontacts.website%>" target="_blank" style="text-decoration: none"
+                ><i class="fa-solid fa-square-arrow-up-right"></i> Website</a
+              ></p>
+          <%end%>
+          
+          <%if @userlinkedin.blank? || @userbehance.blank? || @usergithub.blank? || @userinstagram.blank? %>
+          <p>
+          <%if @usergithub.blank?%>
+              <a href="<%=@usercontacts.github%>" class="media_link" target="_blank"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <%end%>
+              <%if @userbehance.blank?%>
+              <a href="<%=@usercontacts.behance%>" class="media_link" target="_blank"
+                ><i class="fa-brands fa-behance-square"></i
+              ></a>
+              <%end%>
+              <%if @userlinkedin.blank?%>
+              <a href="<%=@usercontacts.linkedin%>" class="media_link" target="_blank"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <%end%>
+              <%if @userinstagram.blank?%>
+              <a href="<%=@usercontacts.instagram%>" class="media_link" target="_blank"
+                ><i class="fa-brands fa-instagram-square"></i
+              ></a>
+              <%end%>
+              </p>
+          <%end%>
+          <%end%>
+         </div>
+      </div>
+    </div>
+    <div class="setting_div">
+      <a href="/settings"><button class="settings_btn">
+        <i class="fa-solid fa-gear"></i> Settings
+      </button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function profile_show() {
+    document.getElementById("main_profile").classList.toggle("main_profile");
+    document
+      .getElementById("main_profile")
+      .classList.toggle("main_profile_act");
+    document.getElementById("profile").classList.toggle("profile_act");
+    document.getElementById("profile").classList.toggle("profile");
+  }
+</script>

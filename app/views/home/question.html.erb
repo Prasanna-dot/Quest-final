@@ -1,0 +1,82 @@
+
+<header class="header">
+    <nav>
+        <div class="logo_div">
+          <a href="/home"><%= image_tag("quest_logo.png") %></a>
+        </div>
+        <div class="filter_div">
+        </div>
+        <div class="option_div">
+          <%if current_user%>
+            <button class="create"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            <button class="profile" id ="profile" onclick="profile_show()">
+              <% if current_user.profile_pic.attached? %>
+                <%= image_tag(current_user.profile_pic) %>
+              <% else %>
+                <i class="fa-solid fa-user"></i>
+              <% end %>
+            </button>
+          <%end%>
+        </div>
+    </nav>
+</header>
+<%if alert == nil %>
+<p id='alert'></p>
+<%else%>
+ <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
+<%end%>
+<div class="que_list"></div>
+<div class="create_form display" id="create_form">
+  <form action="/game_create">
+    <input type="text" name="game[title]" id="title" placeholder="Game title" required onchange="check()">
+    <button type="submit">Create</button>
+  </form>
+</div>
+<div class="que_main" id="que_main">
+  <div class="cont">
+        <form action="/add_question">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+            <div class="que-row">
+                <textarea cols="30" rows="4" name="conduct[question]" id="question_qu" placeholder="Question.." required></textarea>
+            </div>
+            <div class="qu-row">
+                <div class="qu-col">
+                    <div class="ques">
+                        <input type="text" name="conduct[answer]" id="answer" placeholder="Answer.." required>
+                    </div>
+                    <div class="ques">
+                        <input type="text" name="conduct[choice1]" id="choice2" placeholder="choice.." required>
+                    </div>
+                    <div class="ques">
+                        <input type="text" name="conduct[choice2]" id="choice1" placeholder="choice(optional)">
+                    </div>
+                    <div class="ques">
+                        <input type="text" name="conduct[choice3]" id="choice3" placeholder="choice(optional)">
+                    </div> 
+                </div>        
+            </div>
+            <div class="qu-btn">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div>
+
+    </div>
+</div>
+<%if current_user%>
+   <%= render "profile"%>
+<%end%>
+
+<style>
+    .main_menu .assessment_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+</style>
+
+<script>
+  function create(){
+    document.getElementById('create_form').classList.toggle("display");
+  }
+</script>

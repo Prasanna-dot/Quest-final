@@ -1,0 +1,330 @@
+<header class="header">
+    <nav>
+        <div class="logo_div">
+            <%= image_tag("quest_logo.png") %>
+        </div>
+        <div class="filter_div">
+        </div>
+        <div class="option_div">
+            <%if current_user%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="profile" id ="profile">
+      <%if @user.profile_pic.attached?%>
+      <%= image_tag(@user.profile_pic) %>
+      <%else%>
+      <i class="fa-solid fa-user"></i>
+      <%end%>
+            </button>
+    <%else%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <%= link_to '<button><i class="fa-solid fa-bell"></i></button>'.html_safe, login_path, :class=>"notifi" %>
+            <%= link_to '<button><i class="fa-solid fa-user"></i></button>'.html_safe, login_path, :class=>"profile" %>
+    <%end%>
+            
+        </div>
+    </nav>
+</header>
+<%= render "home/header"%>
+<div class="main_profile_act" id="main_profile">
+    <div class="edit_profile_div" id="edit_profile_div"></div>
+    <div class="profile_change">
+      <div class="show_profile">
+      <%if @user.profile_pic.attached?%>
+      <%= image_tag(@user.profile_pic) %>
+      <%else%>
+      <i class="fa-solid fa-user"></i>
+      <%end%>
+      </div>
+    </div>
+    <div class="profile_detial">
+      <div class="name_profile"><p><%=current_user.name%></p></div>
+      <div class="contact_div">
+        <h3>Contact information</h3>
+        <div class="table">
+           <div class="table_title">
+            <%if current_user%>
+            <p>Email</p>
+            <%end%>
+            
+            <%if @usercontact.present? %>
+            <%if @usermobile.present? %>
+            <p>Mobile</p>
+            <%end%>
+            
+            <%if @userwebsite.present? %>
+            <p>Site</p>
+            <%end%>
+            
+            <%if @userlinkedin.present? || @userbehance.present? || @usergithub.present? || @userinstagram.present? %>
+            <p>Social</p>
+            <%end%>
+            <%end%>
+          </div>
+           <div class="table_detial">
+            <%if current_user%>
+            <p><%=current_user.email%></p>
+            <%end%>
+            
+   <%if @usercontact.present? %>
+            <%if @usermobile.present? %>
+            <p><%=@usermobile%></p>
+            <%end%>
+            
+            <%if @userwebsite.present? %>
+            <p><a href="<%=@userwebsite%>" target="_blank" style="text-decoration: none"
+                  ><i class="fa-solid fa-square-arrow-up-right"></i> Website</a
+                ></p>
+            <%end%>
+            
+            <%if @userlinkedin.present? || @userbehance.present? || @usergithub.present? || @userinstagram.present? %>
+            <p>
+            <%if @usergithub.present?%>
+                <a href="<%=@usergithub%>" class="media_link" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+                <%end%>
+                <%if @userbehance.present?%>
+                <a href="<%=@userbehance%>" class="media_link" target="_blank"
+                  ><i class="fa-brands fa-behance-square"></i
+                ></a>
+                <%end%>
+                <%if @userlinkedin.present?%>
+                <a href="<%=@userlinkedin%>" class="media_link" target="_blank"
+                  ><i class="fa-brands fa-linkedin"></i
+                ></a>
+                <%end%>
+                <%if @userinstagram.present?%>
+                <a href="<%=@userinstagram%>" class="media_link" target="_blank"
+                  ><i class="fa-brands fa-instagram-square"></i
+                ></a>
+                <%end%>
+                </p>
+            <%end%>
+            <%end%>
+           </div>
+        </div>
+      </div>
+      <div class="setting_div">
+        <a href="/settings"><button class="settings_btn">
+          <i class="fa-solid fa-gear"></i> Settings
+        </button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="edit_change_profile_act" id="edit_change_profile">
+    <div class="edit_change_menu">
+      <div class="edit_option_div">
+        <button id="edit_profile_btn" class="edit_profile_btn active" onclick="edit_profile()">
+          <i class="fa-solid fa-user-pen"></i> Edit profile
+        </button>
+        <button id="edit_contect_btn" class="edit_contect_btn deactive" onclick="edit_contect()">
+          <i class="fa-solid fa-address-book"></i> Contact
+        </button>
+        <button id="edit_password_btn" class="edit_password_btn deactive" onclick="change_password()">
+          <i class="fa-solid fa-rotate"></i> Change password
+        </button>
+        <button id="edit_notifi_btn" class="edit_notifi_btn deactive" onclick="edit_notifi()">
+          <i class="fa-solid fa-bell"></i> Notification
+        </button>
+      </div>
+    </div>
+    <div class="option_change">
+      <div class="contact_change_div display" id="contact_change_div">
+        <div class="contact_change_title">
+          <h4>Mobile</h4>
+           <h4>Website</h4>
+           <h4>Linkedin</h4>
+           <h4>Behance</h4>
+           <h4>Github</h4>
+           <h4>Instagram</h4>
+        </div>
+        <div class="contact_change_field">
+           <form action="/contact">
+            <div class="input">
+             <%if @usercontact.present? %>
+           <%if @usermobile.present?%>
+           <input type="text" name="contact[mobile]" id="mobile" placeholder="Mobile number(optional)" value="<%=@usermobile%>">
+               <%else%>
+           <input type="text" name="contact[mobile]" id="mobile" placeholder="Mobile number(optional)">
+                <%end%>
+               <%else%>
+           <input type="text" name="contact[mobile]" id="mobile" placeholder="Mobile number(optional)">
+                <%end%>
+            </div>
+            <div class="input">
+            <%if @usercontact.present? %>
+            <%if @userwebsite.present? %>
+              <input type="text" name="contact[website]" id="website" placeholder="Past website link(optional)" value="<%=@userwebsite%>">
+              <%else%>
+              <input type="text" name="contact[website]" id="website" placeholder="Past website link(optional)">
+              <%end%>
+              <%else%>
+              <input type="text" name="contact[website]" id="website" placeholder="Past website link(optional)">
+              <%end%>
+            </div>
+            <div class="input">
+            <%if @usercontact.present? %>
+            <%if @userlinkedin.present?%>
+             <input type="text" name="contact[linkedin]" id="linkedin" placeholder="Past linkedin link(optional)" value="<%=@userlinkedin%>">
+            <%else%>
+             <input type="text" name="contact[linkedin]" id="linkedin" placeholder="Past linkedin link(optional)">
+            <%end%>
+            <%else%>
+             <input type="text" name="contact[linkedin]" id="linkedin" placeholder="Past linkedin link(optional)">
+            <%end%>
+            </div>
+             <div class="input">
+             <%if @usercontact.present? %>
+             <%if @userbehance.present?%>
+             <input type="text" name="contact[behance]" id="behance" placeholder="Past behance link(optional)" value="<%=@userbehance%>">
+                <%else%>
+             <input type="text" name="contact[behance]" id="behance" placeholder="Past behance link(optional)">
+                <%end%>
+             <%else%>
+             <input type="text" name="contact[behance]" id="behance" placeholder="Past behance link(optional)">
+             <%end%>
+            </div>
+             <div class="input">
+             <%if @usercontact.present? %>
+           <%if @usergithub.present?%>
+           <input type="text" name="contact[github]" id="github" placeholder="Past github link(optional)" value="<%=@usergithub%>">
+               <%else%>
+           <input type="text" name="contact[github]" id="github" placeholder="Past github link(optional)">
+                <%end%>
+               <%else%>
+           <input type="text" name="contact[github]" id="github" placeholder="Past github link(optional)">
+                <%end%>
+            </div>
+             <div class="input">
+             <%if @usercontact.present? %>
+           <%if @userinstagram.present?%>
+           <input type="text" name="contact[instagram]" id="instagram" placeholder="Past instagram link(optional)" value="<%=@userinstagram%>">
+               <%else%>
+           <input type="text" name="contact[instagram]" id="instagram" placeholder="Past instagram link(optional)">
+                <%end%>
+                <%else%>
+           <input type="text" name="contact[instagram]" id="instagram" placeholder="Past instagram link(optional)">
+                <%end%>
+            </div>
+            <button type="submit" class="save_contact_btn">Save Contact</button>
+           </form>
+        </div>
+    </div>
+
+    <div class="edit_profile_change" id="edit_profile_change">
+      <div class="profile_change_edit">
+        <div class="show_profile">
+          <%if @user.profile_pic.attached?%>
+            <%= image_tag(@user.profile_pic, {id: 'blah_img'}) %>
+          <%else%>
+            <img src id="blah">
+            <i class="fa-solid fa-user" id="without_image"></i>
+          <%end%>
+        </div>
+      </div>
+      <div class="profile_change_div" id="profile_change_div">
+        <div class="profile_change_field">
+          <%= form_with url: update_path do |form| %>
+            <div class="profile_edit_btns">
+              <label for="profile_pic">Change profile</label>
+              <a href="/delete_profile">Delete profile</a>
+              <%= form.file_field :profile_pic %>
+            </div>
+            <div class="profile_change">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" placeholder="Name" value="<%=current_user.name%>">
+            </div>
+            <div class="profile_change">
+              <label for="edit_email">Email</label>
+              <input type="email" name="email" id="edit_email" placeholder="email@gmail.com" value="<%=current_user.email%>" disabled>
+            </div>
+            <div class="profile_actions">
+              <button type="submit">Save changes</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+  <style>
+    .main_menu .setting_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+    </style>
+  
+  <script>
+let profile_pic = document.getElementById("profile_pic")
+
+<%if @user.profile_pic.attached?%>
+profile_pic.onchange = evt => {
+  const [file] = profile_pic.files
+  if (file) {
+    blah_img.src = URL.createObjectURL(file)
+  }
+}
+<%else%>
+profile_pic.onchange = evt => {
+  const [file] = profile_pic.files
+  if (file) {
+    document.getElementById("blah").style.display = "block";
+    document.getElementById("without_image").style.display = "none";
+    blah.src = URL.createObjectURL(file)
+  }
+}
+<%end%>
+  
+    function edit_profile(){
+      document.getElementById("edit_profile_btn").classList.add("active");
+      document.getElementById("edit_profile_btn").classList.remove("deactive");
+      document.getElementById("edit_contect_btn").classList.remove("active");
+      document.getElementById("edit_contect_btn").classList.add("deactive");
+      document.getElementById("edit_password_btn").classList.remove("active");
+      document.getElementById("edit_password_btn").classList.add("deactive");
+      document.getElementById("edit_notifi_btn").classList.remove("active");
+      document.getElementById("edit_notifi_btn").classList.add("deactive");
+      document.getElementById("contact_change_div").classList.add("display");
+      document.getElementById("edit_profile_change").classList.remove("display");
+    }
+  
+  function edit_contect(){
+      document.getElementById("edit_profile_btn").classList.remove("active");
+      document.getElementById("edit_profile_btn").classList.add("deactive");
+      document.getElementById("edit_contect_btn").classList.add("active");
+      document.getElementById("edit_contect_btn").classList.remove("deactive");
+      document.getElementById("edit_password_btn").classList.remove("active");
+      document.getElementById("edit_password_btn").classList.add("deactive");
+      document.getElementById("edit_notifi_btn").classList.remove("active");
+      document.getElementById("edit_notifi_btn").classList.add("deactive");
+      document.getElementById("contact_change_div").classList.remove("display");
+      document.getElementById("edit_profile_change").classList.add("display");
+  }
+  
+  function change_password(){
+      document.getElementById("edit_profile_btn").classList.remove("active");
+      document.getElementById("edit_profile_btn").classList.add("deactive");
+      document.getElementById("edit_contect_btn").classList.remove("active");
+      document.getElementById("edit_contect_btn").classList.add("deactive");
+      document.getElementById("edit_password_btn").classList.add("active");
+      document.getElementById("edit_password_btn").classList.remove("deactive");
+      document.getElementById("edit_notifi_btn").classList.remove("active");
+      document.getElementById("edit_notifi_btn").classList.add("deactive");
+      document.getElementById("contact_change_div").classList.add("display");
+      document.getElementById("edit_profile_change").classList.add("display");
+  }
+  
+  function edit_notifi(){
+      document.getElementById("edit_profile_btn").classList.remove("active");
+      document.getElementById("edit_profile_btn").classList.add("deactive");
+      document.getElementById("edit_contect_btn").classList.remove("active");
+      document.getElementById("edit_contect_btn").classList.add("deactive");
+      document.getElementById("edit_password_btn").classList.remove("active");
+      document.getElementById("edit_password_btn").classList.add("deactive");
+      document.getElementById("edit_notifi_btn").classList.add("active");
+      document.getElementById("edit_notifi_btn").classList.remove("deactive");
+      document.getElementById("contact_change_div").classList.add("display");
+      document.getElementById("edit_profile_change").classList.add("display");
+  }
+  </script>

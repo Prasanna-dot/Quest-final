@@ -1,0 +1,14 @@
+<div class="menu">
+    <div class="main_menu">
+        <a href="/home"><button class="home_btn"><i class="fa-solid fa-house"></i>Home</button></a>
+        <a href="/interview"><button class="interview_btn"><i class="fa-solid fa-person-circle-question"></i>InterviewQ&A</button></a>
+        <a href="/assessment"><button class="assessment_btn"><i class="fa-solid fa-clipboard-question"></i>Assessment</button></a>
+        <a href="/dashbord"><button class="dashbord_btn"><i class="fa-solid fa-chart-line"></i>Dashbord</button></a>
+        <a href="/settings"><button class="setting_btn"><i class="fa-solid fa-gear"></i>Settings</button></a>
+    </div>
+    <%if current_user%>
+    <div class="logout_div">
+        <a href="logout"><button><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button></a>
+    </div>
+    <%end%>
+</div>

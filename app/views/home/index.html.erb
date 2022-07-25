@@ -1,0 +1,127 @@
+<header class="header">
+    <nav>
+        <div class="logo_div">
+            <%= image_tag("quest_logo.png") %>
+        </div>
+        <div class="filter_div">
+            <%= link_to "<button>Html</button>".html_safe, home_path(:filter => "html"), :class=>"html_btn filter_nav" %>
+            <%= link_to "<button>Css</button>".html_safe, home_path(:filter => "css"), :class=>"css_btn filter_nav" %>
+            <%= link_to "<button>Javascript</button>".html_safe, home_path(:filter => "javascript"), :class=>"javascript_btn filter_nav" %>
+            <%= link_to "<button>Java</button>".html_safe, home_path(:filter => "java"), :class=>"java_btn filter_nav" %>
+            <div class="dropdown">
+                <button class="dropbtn" class="more_btn">More..</button>
+                <div class="dropdown-content">
+            <%= link_to "Ruby on rails".html_safe, home_path(:filter => "ruby_on_rails"), :class=>"ruby_btn" %>
+            <%= link_to "Python".html_safe, home_path(:filter => "python"), :class=>"python_btn" %>
+            <%= link_to "Boostrap".html_safe, home_path(:filter => "boostrap"), :class=>"boostrap_btn" %>
+            <%= link_to "Mysql".html_safe, home_path(:filter => "mysql"), :class=>"mysql_btn" %>
+            <%= link_to "Other", home_path(:filter => "other"), :class=>"other_btn" %>
+                </div>
+              </div>
+        </div>
+        <div class="option_div">
+            <%if current_user%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="profile" id ="profile" onclick="profile_show()">
+                      <% if current_user.profile_pic.attached? %>
+    <%= image_tag(current_user.profile_pic) %>
+    <% else %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+            </button>
+    <%else%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <%= link_to '<button><i class="fa-solid fa-bell"></i></button>'.html_safe, login_path, :class=>"notifi" %>
+            <%= link_to '<button><i class="fa-solid fa-user"></i></button>'.html_safe, login_path, :class=>"profile" %>
+    <%end%>
+            
+        </div>
+    </nav>
+</header>
+<%= render "header"%>
+
+    <%if current_user%>
+<%= render "profile"%>
+<%end%>
+
+
+<style>
+    .main_menu .home_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+
+    <% case @params %>
+<%when "html"%>
+  .filter_div .html_btn button{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "css"%>
+  .filter_div .css_btn button{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "javascript"%>
+  .filter_div .javascript_btn button{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "java"%>
+  .filter_div .java_btn button{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "ruby_on_rails"%>
+  .filter_div .dropdown .dropbtn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+  .filter_div .dropdown-content .ruby_btn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "python"%>
+  .filter_div .dropdown .dropbtn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+  .filter_div .dropdown-content .python_btn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "boostrap"%>
+  .filter_div .dropdown .dropbtn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+  .filter_div .dropdown-content .boostrap_btn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "mysql"%>
+  .filter_div .dropdown .dropbtn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+  .filter_div .dropdown-content .mysql_btn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%when "other"%>
+  .filter_div .dropdown .dropbtn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+  .filter_div .dropdown-content .other_btn{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%else%>
+  .filter_div .html_btn button{
+    background-color: #2A83E8;
+    color: #fffdf5;
+  }
+<%end%>
+</style>

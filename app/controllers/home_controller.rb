@@ -1,8 +1,10 @@
 class HomeController < ApplicationController  
   before_action :user_contact, only: %i[index contact]
-  before_action :game_values, only: %i[create_game assessment]
+  before_action :game_values, only: %i[create_game assessment game]
   @@question = Hash.new
-  
+  @@evaarray = Hash.new
+  @@gamearray = Hash.new
+
   def index
     if params[:filter] == nil
       render "index"
@@ -15,16 +17,21 @@ class HomeController < ApplicationController
   end
 
   def question
-    @usergame = Game.where(title: params[:title], user_id: current_user)
-    @@question.store(:id,@usergame.ids[0])
+    if params[:title] != nil
+      @usergame = Game.where(title: params[:title], user_id: current_user.id)
+      @@question.store(:id,@usergame.ids[0])
+    end
+
+    @questions = Question.where(game_id: @@question[:id], user_id: current_user.id)
   end
 
-  def add_question
+  def add_question  
     @addque = Question.new(conduct_params)
-    @usergame = Game.where(title: params[:title], user_id: current_user)
+    @usergame = Game.where(title: params[:title], user_id: current_user.id)
     @addque[:game_id] = @@question[:id]
+    @addque[:user_id] = current_user.id
     if @addque.save
-      render "question"
+      redirect_to "/question"
     end
   end
 
@@ -53,7 +60,7 @@ class HomeController < ApplicationController
     if @allgames.present?
       @usergame = Game.where(title: game_params[:title], user_id: current_user)
     if @usergame.present?
-          flash.now[:alert] = "Title already exist"
+          flash.now[:alert] = "Alert"
           render "assessment"
         else
           @game = Game.new(game_params)
@@ -91,7 +98,9 @@ class HomeController < ApplicationController
 
   private
   def set_user
-    @user = User.find(current_user.id)
+    if current_user
+     @user = User.find(current_user.id)
+    end
   end
 
   def user_contact
@@ -119,7 +128,7 @@ class HomeController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:title)
+    params.require(:game).permit(:title, :time, :result)
   end
 
   

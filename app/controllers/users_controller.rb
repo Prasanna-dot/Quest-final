@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    redirect_to "settings"
+    redirect_to "/home"
   end
 
   # GET /users/new
@@ -81,7 +81,9 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+      if current_user
       @user = User.find(current_user.id)
+     end
     end
 
     def user_contact
@@ -101,7 +103,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_pic)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
     
 end

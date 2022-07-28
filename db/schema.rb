@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_24_052257) do
+ActiveRecord::Schema.define(version: 2022_07_27_215827) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2022_07_24_052257) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "question_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "games_id", null: false
+    t.index ["games_id"], name: "index_answers_on_games_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -55,6 +57,8 @@ ActiveRecord::Schema.define(version: 2022_07_24_052257) do
     t.bigint "pin"
     t.string "status"
     t.string "title"
+    t.string "time"
+    t.string "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -70,7 +74,9 @@ ActiveRecord::Schema.define(version: 2022_07_24_052257) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "game_id", null: false
+    t.bigint "user_id", null: false
     t.index ["game_id"], name: "index_questions_on_game_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "user_contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -98,9 +104,11 @@ ActiveRecord::Schema.define(version: 2022_07_24_052257) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "games", column: "games_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "games", "users"
   add_foreign_key "questions", "games"
+  add_foreign_key "questions", "users"
   add_foreign_key "user_contacts", "users"
 end

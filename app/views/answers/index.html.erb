@@ -1,0 +1,112 @@
+<header class="header" id="header">
+  <nav>
+    <div class="logo_div">
+      <a><%= image_tag("quest_logo.png") %></a>
+    </div>
+    <div class="filter_div"></div>
+    <div class="option_div">
+      <a href="/assessment" class="quit_btn">Quit</a>
+      <div class="timer" id="timer"></div>
+    </div>
+  </nav>
+</header>
+
+<div id="question">
+    <%if @gameshow.present?%>
+      <%@gameshow.each do |gamequestion|%>
+              <div class="question_main">
+                <div class="question_display">
+                  <%=gamequestion.question%>
+                </div>
+                <form class="option_display" action="/answers" data_remote="true" method="post">
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="answer[user_id]" value="<%=current_user.id%>">
+                    <input type="hidden" name="answer[question_id]" value="<%=gamequestion.id%>">
+                        <% co = Array.new %> 
+                            <% @qarr[gamequestion.id].shuffle.each do |option| %>
+                                <% co.push(option) %> 
+                            <% end %> 
+                            <% co.each do |ops| %>
+                              <%if ops != ""%>
+                                <div class="options">
+                                    <input class="options_div" type="submit" name="answer[user_answer]" value="<%= ops %>">
+                                </div>
+                              <% end %>
+                          <% end %>
+                </form>
+            </div>
+          <%end%>
+        <%end%>
+</div>
+
+<style>
+  #header {
+    position: sticky;
+    top: 0;
+  }
+  .question_main {
+    display: none;
+  }
+
+  #profile:hover {
+    background-color: #e8e7df;
+    color: #000;
+    font-family: "Poppins", sans-serif;
+  }
+</style>
+<%if @gameshow.present?%>
+<script>
+  let question = document.getElementById("question");
+  let question_count = question.getElementsByClassName("question_main");
+  let timer = document.getElementById("timer");
+  let count = 60000*<%=@game.time%>  
+  let cou = 0 
+
+  function next() {
+    for (let i = <%=@answers.length%>; i < question_count.length; i++) {  
+      setTimeout(function () {
+        if (i == <%=@answers.length%>) {
+          question_count[i].style.display = "block";
+        } else if (i > <%=@answers.length%>) {
+          for (let q = i; q >= 0; q--) {
+            question_count[q].style.display = "none";
+            question_count[i].style.display = "block";
+          }  
+        }          
+      }, count * (i-<%=@answers.length%>));
+
+      
+      setInterval(function () {
+      sunmitform(i)
+    }, count);
+    }
+    if(<%=@answers.length%> == question_count.length){
+      window.location.href = "/assessment"
+    }
+      timer_time((count/1000)-1);
+  }
+
+function timer_time(seconds) {
+    cou++;
+    if(cou!=question_count.length+1){
+      var myTimer = setInterval(function () {
+      timer.innerHTML = seconds--;
+    }, 1000);
+    
+      setTimeout(function () {
+      clearInterval(myTimer);
+      timer_time((count/1000)-1);
+        }, count);
+    }else{
+      window.location.href = "/assessment"
+    }
+  }
+
+  function sunmitform(o){
+    question_count[o].getElementsByClassName("option_display")[0].submit();
+  }
+
+  next();
+</script>
+
+<%end%>

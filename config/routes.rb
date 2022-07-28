@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'answers/index'
   root 'home#index'
   get "/home", to: 'home#index'
   get "/assessment", to: 'home#assessment'
   resources :users
+  resources :answers
 resources :sessions, only: [:new, :create, :destro]
 get 'signup', to: 'users#new', as: 'signup'
 get 'login', to: 'sessions#new', as: 'login'
@@ -22,7 +24,9 @@ get "/delete_profile", to: 'users#delete_profile',  as: 'delete_profile'
 get "/game_create", to: 'home#create_game',  as: 'create_game'
 get "/start/:title", to: 'home#start_game',  as: 'start_game'
 get "/stop/:title", to: 'home#stop_game',  as: 'stop_game'
-get "/question/:title", to: 'home#question',  as: 'question'
+get "/question/:title", to: 'home#question'
 get "/add_question", to: 'home#add_question',  as: 'add_question'
+match "/question", :to => "home#question", :via => :get
+match "/game", :to => "answers#index", :via => :get
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -2,13 +2,13 @@
 <header class="header">
     <nav>
         <div class="logo_div">
-          <a href="/home"><%= image_tag("quest_logo.png") %></a>
+          <a href="/assessment"><%= image_tag("quest_logo.png") %></a>
         </div>
         <div class="filter_div">
         </div>
         <div class="option_div">
           <%if current_user%>
-            <button class="create"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            <a href="/assessment" class="create"><i class="fa-solid fa-floppy-disk"></i> Save</a>
             <button class="profile" id ="profile" onclick="profile_show()">
               <% if current_user.profile_pic.attached? %>
                 <%= image_tag(current_user.profile_pic) %>
@@ -25,7 +25,22 @@
 <%else%>
  <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
 <%end%>
-<div class="que_list"></div>
+<div class="que_list" id="que_list">
+  <% if @questions.present?%>
+  <%con = 0%>
+  <% @questions.each do |count|%>
+  <%con += 1%>
+  <div class="que_count">
+    <div class="que_con_div">
+      <span>Question</span><span><%=con%></span>
+    </div>
+    <div class="que_btn_div">
+      <a class="que_del_btn" href="/delete_question/<%= count.id %>"><i class="fa-solid fa-trash"></i></a>
+    </div>
+  </div>
+  <%end%>
+  <%end%>
+</div>
 <div class="create_form display" id="create_form">
   <form action="/game_create">
     <input type="text" name="game[title]" id="title" placeholder="Game title" required onchange="check()">
@@ -60,9 +75,26 @@
             </div>
         </form>
     </div>
-    <div>
-
+    <% if @questions.present?%>
+    <% @questions.each do |que|%>
+    <div class="question_preview">
+      <div class="question_pre_div">
+         <h1><%= que.question %></h1>
+      </div>
+      <div class="question_cho_div">
+        <div class="choice"><a href=""><%= que.answer %></a></div>
+        <div class="choice"><a href=""><%= que.choice1 %></a></div>
+        <%if que.choice2.present? %>
+        <div class="choice"><a href=""><%= que.choice2 %></a></div>
+        <%end%>
+        <%if que.choice3.present? %>
+        <div class="choice"><a href=""><%= que.choice3 %></a></div>
+        <%end%>
+      </div>
     </div>
+    <%end%>
+    <%end%>
+  </div>
 </div>
 <%if current_user%>
    <%= render "profile"%>
@@ -76,7 +108,35 @@
 </style>
 
 <script>
+  function onload_windo(){
+  document.getElementById('que_list').getElementsByClassName('que_count')[<%= @questions.length-1 %>].style.backgroundColor = "#FFFDF5";
+  document.getElementById('que_list').getElementsByClassName('que_count')[<%= @questions.length-1 %>].style.color ="#2a83e8";
+  document.getElementById('que_list').getElementsByClassName('que_btn_div')[<%= @questions.length-1 %>].style.display ="block";
+  document.getElementById('que_main').getElementsByClassName('question_preview')[<%= @questions.length-1 %>].style.display ="block";
+
+  let len = document.getElementById('que_list').getElementsByClassName('que_btn_div').length
+  
+  for (let i=0; i<len; i++){
+    document.getElementById('que_list').getElementsByClassName('que_count')[i].onclick = function(){
+      document.getElementById('que_list').getElementsByClassName('que_count')[i].style.backgroundColor = "#FFFDF5";
+      document.getElementById('que_list').getElementsByClassName('que_count')[i].style.color ="#2a83e8";
+      document.getElementById('que_list').getElementsByClassName('que_btn_div')[i].style.display ="block";
+  document.getElementById('que_main').getElementsByClassName('question_preview')[i].style.display ="block";
+      for(let o=0; o<len; o++){
+      if(o != i){
+      document.getElementById('que_list').getElementsByClassName('que_count')[o].style.backgroundColor = "#2a83e8";
+      document.getElementById('que_list').getElementsByClassName('que_count')[o].style.color ="#FFFDF5";
+      document.getElementById('que_list').getElementsByClassName('que_btn_div')[o].style.display ="none";
+  document.getElementById('que_main').getElementsByClassName('question_preview')[o].style.display ="none";
+      }
+      }
+    }
+  }
+}
+
   function create(){
     document.getElementById('create_form').classList.toggle("display");
   }
+
+  onload_windo();
 </script>

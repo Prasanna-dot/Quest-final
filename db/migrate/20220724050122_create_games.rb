@@ -4,6 +4,8 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.bigint :pin, unique: true
       t.string :status
       t.string :title
+      t.string :time
+      t.string :result
 
       t.timestamps
     end

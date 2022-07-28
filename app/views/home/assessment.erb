@@ -27,49 +27,66 @@
         </div>
     </nav>
 </header>
-<%if alert == nil %>
-<p id='alert'></p>
-<%else%>
- <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
-<%end%>
+<div class="ass_alert" id="ass_alert">
+  <div class="ass_error">
+    <h4>Title is already exist<i class="fa-solid fa-circle-exclamation"></i></h4>
+    <button onclick="alertclose()">Ok</button>
+  </div>
+</div>
 <div class="create_form display" id="create_form">
   <form action="/game_create">
     <input type="text" name="game[title]" id="title" placeholder="Game title" required onchange="check()">
+    <select name="game[time]" required>
+      <option>Set time</option>
+      <option value="0.5">00:30 min</option>
+      <option value="1">01:00 min</option>
+    </select>
+    <select name="game[result]" required>
+      <option>Result visibility</option>
+      <option value="hidden">Hidden</option>
+      <option value="visible">Visible</option>
+    </select>
     <button type="submit">Create</button>
   </form>
 </div>
 <div class="ass_main" id="ass_main">
   <% @usersgame.each do |game|%>
   <div class="ass_que">
-      <div class="que_detial">
+    <div class="que_detial">
+      <%if game.status == "0"%>
         <a href="/question/<%=game.title%>" class="add_que"></a>
-        <div class="queinfo_div">
-          <h2><%=game.title%></h2>
-          <div class="pin_div_show">
-        <% if game.status == "1"%>
-              <input type="text" name="pin" class="que_pin" id="que_pin" value="<%=game.pin%>" disabled>
-        <%else%>
-              <input type="password" name="pin" class="que_pin" id="que_pin" value="<%=game.pin%>" disabled>
-        <%end%>
-          </div>
-          
+      <%end%>
+
+      <div class="queinfo_div">
+        <h2><%=game.title%></h2>
+        <div class="pin_div_show">
+          <% if game.status == "1"%>
+            <input type="text" name="pin" class="que_pin" value="<%=game.pin%>" disabled>
+          <%else%>
+            <input type="password" name="pin" class="que_pin" value="<%=game.pin%>" disabled>
+          <%end%>
         </div>
-        <div class="que_btn">
+      </div>
+
+      <div class="que_btn">
         <% if game.status == "0"%>
           <a href="start/<%=game.title%>" class="start_btn" id="start_btn">Start</a>
         <%else%>
           <a href="stop/<%=game.title%>" class="stop_btn" id="stop_btn">Stop</a>
         <%end%>
-        </div>
-        <a href="" class="edit_btn"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a href="" class="preview_btn"><i class="fa-solid fa-eye"></i></a>
       </div>
+
+      <%if game.status == "0"%>
+        <div class="preview_btn"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+      <%end%>
+    </div>
   </div>
   <%end%>
 </div>
-  <%if current_user%>
-    <%= render "profile"%>
-  <%end%>
+
+<%if current_user%>
+  <%= render "profile"%>
+<%end%>
 
 <style>
     .main_menu .assessment_btn{
@@ -79,6 +96,40 @@
 </style>
 
 <script>
+
+<%if alert != nil %>
+   document.getElementById("ass_alert").style.display = "flex"
+<%end%>
+
+function alertclose(){
+  document.getElementById("ass_alert").style.display = "none"
+}
+
+  let len = <%=@usersgame.length%>
+
+  for(let i=0; i<len; i++){
+    document.getElementsByClassName("preview_btn")[i].onclick = function(){
+      if (document.getElementsByClassName("preview_btn")[i].style.backgroundColor == "rgb(244, 243, 243)") {
+        document.getElementsByClassName("preview_btn")[i].style.backgroundColor = "#fff";
+      }
+      else {
+      document.getElementsByClassName("preview_btn")[i].style.backgroundColor = "rgb(244, 243, 243)"
+        if(i==0){
+          for (let o =(i+1); o<len; o++) {
+            document.getElementsByClassName("preview_btn")[o].style.backgroundColor = "#fff";
+          }
+        }else{
+          for (let q = (i-1); q >= 0; q--) {
+            document.getElementsByClassName("preview_btn")[q].style.backgroundColor = "#fff";
+          }
+          for (let o =(i+1); o<len; o++) {
+            document.getElementsByClassName("preview_btn")[o].style.backgroundColor = "#fff";
+          }
+        }
+      }
+    }
+  }
+
   function create(){
     document.getElementById('create_form').classList.toggle("display");
   }

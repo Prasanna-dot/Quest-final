@@ -5,6 +5,8 @@ class HomeController < ApplicationController
   @@evaarray = Hash.new
   @@gamearray = Hash.new
 
+
+
   def index
     if params[:filter] == nil
       render "index"
@@ -14,6 +16,10 @@ class HomeController < ApplicationController
   end
 
   def assessment
+  end
+
+  def dashbord
+    @greets = greet
   end
 
   def question
@@ -138,5 +144,23 @@ class HomeController < ApplicationController
 
   def conduct_params
     params.require(:conduct).permit(:question, :answer, :choice1, :choice2, :choice3, :game_id)
+  end
+
+  def greet
+    now = Time.now
+    today = Date.today.to_time
+  
+    morning = today.beginning_of_day
+    noon = today.noon
+    evening = today.change( hour: 17 )
+    night = today.change( hour: 20 )
+  
+    if (morning..noon).cover? now
+      'Good Morning,'
+    elsif (noon..evening).cover? now
+      'Good Afternoon,'
+    elsif (evening..night).cover? now
+      'Good Evening,'
+    end
   end
 end

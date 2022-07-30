@@ -28,5 +28,6 @@ get "/question/:title", to: 'home#question'
 get "/add_question", to: 'home#add_question',  as: 'add_question'
 match "/question", :to => "home#question", :via => :get
 match "/game", :to => "answers#index", :via => :get
+match "/dashbord", :to => "home#dashbord", :via => :get
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

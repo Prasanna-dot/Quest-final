@@ -1,0 +1,102 @@
+<%= render "header"%>
+<header class="header">
+    <nav>
+        <div class="logo_div">
+            <%= image_tag("quest_logo.png") %>
+        </div>
+        <div class="filter_div">
+            <h2>
+                <span><%= @greets %></span>
+                <span><%= current_user.name %></span>
+            </h2>
+        </div>
+        <div class="option_div">
+            <%if current_user%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="profile" id ="profile" onclick="profile_show()">
+                      <% if current_user.profile_pic.attached? %>
+    <%= image_tag(current_user.profile_pic) %>
+    <% else %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+            </button>
+    <%else%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <%= link_to '<button><i class="fa-solid fa-bell"></i></button>'.html_safe, login_path, :class=>"notifi" %>
+            <%= link_to '<button><i class="fa-solid fa-user"></i></button>'.html_safe, login_path, :class=>"profile" %>
+    <%end%>
+            
+        </div>
+        
+
+    </nav>
+</header>
+
+<div class="das_main">
+    <div class="report_div">
+        <div class="show_report">
+            <div class="question_report">
+                <div class="qreport"></div>
+            </div>
+            <div class="paticipate_div">
+                <div class="preport"></div>
+            </div>
+        </div>
+    </div>
+    <div class="name_list_div">
+        <div class="list_div_main">
+            <div class="das_profile_user">
+                <div class="das_user_profile"></div>
+                <h3>Prasanna venkatesh</h3>
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+            <div class="das_profile_user">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%if current_user%>
+  <%= render "profile"%>
+<%end%>
+
+<style>
+    .main_menu .dashbord_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+</style>

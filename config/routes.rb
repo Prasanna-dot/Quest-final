@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'answers/index'
   root 'home#index'
   get "/home", to: 'home#index'
   get "/assessment", to: 'home#assessment'
   resources :users
   resources :answers
-resources :sessions, only: [:new, :create, :destro]
+  resources :questions
+resources :sessions, only: [:new, :create, :destroy]
 get 'signup', to: 'users#new', as: 'signup'
 get 'login', to: 'sessions#new', as: 'login'
 get 'logout', to: 'sessions#destroy', as: 'logout'
@@ -24,10 +24,11 @@ get "/delete_profile", to: 'users#delete_profile',  as: 'delete_profile'
 get "/game_create", to: 'home#create_game',  as: 'create_game'
 get "/start/:title", to: 'home#start_game',  as: 'start_game'
 get "/stop/:title", to: 'home#stop_game',  as: 'stop_game'
-get "/question/:title", to: 'home#question'
-get "/add_question", to: 'home#add_question',  as: 'add_question'
-match "/question", :to => "home#question", :via => :get
+get "/question/:title", to: 'questions#index'
+get "/questions", to: 'questions#create',  as: 'create'
+match "/question", :to => "questions#index", :via => :get
 match "/game", :to => "answers#index", :via => :get
 match "/dashbord", :to => "home#dashbord", :via => :get
+get "/delete_question/:id", to: 'questions#delete'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

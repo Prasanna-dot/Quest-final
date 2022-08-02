@@ -1,4 +1,3 @@
-
 <header class="header">
     <nav>
         <div class="logo_div">
@@ -49,33 +48,13 @@
 </div>
 <div class="que_main" id="que_main">
   <div class="cont">
-        <form action="/add_question">
-            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-            <div class="que-row">
-                <textarea cols="30" rows="4" name="conduct[question]" id="question_qu" placeholder="Question.." required></textarea>
-            </div>
-            <div class="qu-row">
-                <div class="qu-col">
-                    <div class="ques">
-                        <input type="text" name="conduct[answer]" id="answer" placeholder="Answer.." required>
-                    </div>
-                    <div class="ques">
-                        <input type="text" name="conduct[choice1]" id="choice2" placeholder="choice.." required>
-                    </div>
-                    <div class="ques">
-                        <input type="text" name="conduct[choice2]" id="choice1" placeholder="choice(optional)">
-                    </div>
-                    <div class="ques">
-                        <input type="text" name="conduct[choice3]" id="choice3" placeholder="choice(optional)">
-                    </div> 
-                </div>        
-            </div>
-            <div class="qu-btn">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+       <%=render "form"%>
     </div>
+
     <% if @questions.present?%>
+    <button class="list_showhide" onclick="list_btn()">
+        <span class="count_que" id="count_que"><%=@questions.length%></span><i class="fa-solid fa-angle-left" id="btn_i_list"></i>
+    </button>
     <% @questions.each do |que|%>
     <div class="question_preview">
       <div class="question_pre_div">
@@ -97,7 +76,7 @@
   </div>
 </div>
 <%if current_user%>
-   <%= render "profile"%>
+   <%= render "home/profile"%>
 <%end%>
 
 <style>
@@ -106,28 +85,46 @@
     color: #2A83E8;
     }
 </style>
-
+    <% if @questions.present?%>
 <script>
-  function onload_windo(){
+
+    function list_btn(){
+        let list = document.getElementById('que_list')
+        if (list.style.width == "20%") {
+            list.style.width ="0%";
+            list.style.padding ="0%";
+            document.getElementById('count_que').style.display ="flex";
+            document.getElementById('que_main').style.width ="100%";
+            document.getElementById('btn_i_list').style.transform ="rotate(180deg)";
+  } else {
+            list.style.width ="20%";
+            list.style.padding ="1%";
+            document.getElementById('count_que').style.display ="none";
+            document.getElementById('que_main').style.width ="80%";
+            document.getElementById('btn_i_list').style.transform ="rotate(0deg)";
+  }
+        
+    }
+  function onload_window(){
   document.getElementById('que_list').getElementsByClassName('que_count')[<%= @questions.length-1 %>].style.backgroundColor = "#FFFDF5";
   document.getElementById('que_list').getElementsByClassName('que_count')[<%= @questions.length-1 %>].style.color ="#2a83e8";
   document.getElementById('que_list').getElementsByClassName('que_btn_div')[<%= @questions.length-1 %>].style.display ="block";
   document.getElementById('que_main').getElementsByClassName('question_preview')[<%= @questions.length-1 %>].style.display ="block";
-
+    
   let len = document.getElementById('que_list').getElementsByClassName('que_btn_div').length
-  
+
   for (let i=0; i<len; i++){
     document.getElementById('que_list').getElementsByClassName('que_count')[i].onclick = function(){
       document.getElementById('que_list').getElementsByClassName('que_count')[i].style.backgroundColor = "#FFFDF5";
       document.getElementById('que_list').getElementsByClassName('que_count')[i].style.color ="#2a83e8";
       document.getElementById('que_list').getElementsByClassName('que_btn_div')[i].style.display ="block";
-  document.getElementById('que_main').getElementsByClassName('question_preview')[i].style.display ="block";
+      document.getElementById('que_main').getElementsByClassName('question_preview')[i].style.display ="block";
       for(let o=0; o<len; o++){
       if(o != i){
       document.getElementById('que_list').getElementsByClassName('que_count')[o].style.backgroundColor = "#2a83e8";
       document.getElementById('que_list').getElementsByClassName('que_count')[o].style.color ="#FFFDF5";
       document.getElementById('que_list').getElementsByClassName('que_btn_div')[o].style.display ="none";
-  document.getElementById('que_main').getElementsByClassName('question_preview')[o].style.display ="none";
+      document.getElementById('que_main').getElementsByClassName('question_preview')[o].style.display ="none";
       }
       }
     }
@@ -138,5 +135,6 @@
     document.getElementById('create_form').classList.toggle("display");
   }
 
-  onload_windo();
+  onload_window();
 </script>
+<%end%>

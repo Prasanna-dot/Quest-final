@@ -22,25 +22,6 @@ class HomeController < ApplicationController
     @greets = greet
   end
 
-  def question
-    if params[:title] != nil
-      @usergame = Game.where(title: params[:title], user_id: current_user.id)
-      @@question.store(:id,@usergame.ids[0])
-    end
-
-    @questions = Question.where(game_id: @@question[:id], user_id: current_user.id)
-  end
-
-  def add_question  
-    @addque = Question.new(conduct_params)
-    @usergame = Game.where(title: params[:title], user_id: current_user.id)
-    @addque[:game_id] = @@question[:id]
-    @addque[:user_id] = current_user.id
-    if @addque.save
-      redirect_to "/question"
-    end
-  end
-
   def contact
     if @usercontacts.present?
       if contact_params[:mobile] == "" && contact_params[:website] == "" && contact_params[:linkedin] == "" && contact_params[:behance] == "" && contact_params[:instagram] == ""
@@ -140,10 +121,6 @@ class HomeController < ApplicationController
   
   def question_params
     params.require(:game).permit(:title)
-  end
-
-  def conduct_params
-    params.require(:conduct).permit(:question, :answer, :choice1, :choice2, :choice3, :game_id)
   end
 
   def greet

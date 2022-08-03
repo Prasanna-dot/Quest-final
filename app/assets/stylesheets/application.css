@@ -1441,9 +1441,8 @@ body {
   bottom: 0;
   right: 0;
   width: 82%;
-  height: 92vh;
+  height: 87vh;
   display: flex;
-  background-color: #000;
 }
 
 .report_div{
@@ -1458,34 +1457,85 @@ body {
   border-radius: 7px;
   background-color: transparent;
   display: flex;
-  grid-template-columns: calc(100%/2);
-  grid-template-rows: 100% 100%;
+  grid-template-columns: calc(100%/2) calc(100%/2) calc(100%/2);
+  grid-template-rows: 100% 100% 100%;
 }
 
-.question_report, .paticipate_div{
+.report_btns{
+  width: 82%;
+  height: 5vh;
+  position: absolute;
+  top: 8vh;
+  right: 0;
+  display: flex;
+  padding-left: 2%;
+}
+
+.report_btns button{
+  border: none;
+  outline: none;
+  padding: 0% 2%;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  background-color: transparent;
+  font-size: 1vw;
+}
+
+.report_btns button:nth-child(1){
+  color: #2a83e8;
+}
+
+.report_btns button .btn_lines{
+  width: 0%;
+  height: 5%;
+  border-radius: 10px;
+  background-color: #2a83e8;
+  transition: all 1s;
+}
+
+#ass_rep_lin{
+  width: 50%;
+}
+
+.question_report, .paticipate_div, .ass_count_div{
   width: 100%;
   height: 100%;
   padding: 2%;
 }
 
-.qreport, .preport{
+.qreport, .preport, .ass_count_rep{
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 5px;
   background-color: #FFF;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.094);
   cursor: pointer;
 }
 
-.name_list_div{
-  width: 30%;
-  height: 100%;
+.rep_con{
+  width: 100%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 5vw;
+  font-family: "Poppins", sans-serif;
+}
+
+.rep_text{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.name_list_div{
+  width: 30%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: calc(100%/2);
   padding: 2%;
 }
 
@@ -1499,9 +1549,19 @@ body {
   cursor: pointer;
 }
 
+.list_ass_main{
+  width: 100%;
+  height: 95%;
+  border-radius: 10px;
+  background-color: rgb(234, 234, 234);
+  padding: 1% 5%;
+  overflow: auto;
+  cursor: pointer;
+}
+
 .das_profile_user{
   width: 100%;
-  height: 7%;
+  height: 15%;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   margin: 6% 0%;
@@ -1509,6 +1569,8 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 
 .list_div_main::-webkit-scrollbar-track
@@ -1540,19 +1602,34 @@ body {
   justify-content: center;
   align-items: center;
 }
+.ass_profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
 
 .das_user_profile img{
   width: 40px;
   height: 40px;
   object-fit: cover;
 }
-
 .das_profile_user h3{
   margin-left: 5%;
+  margin-right: 5%;
+  width: 80%;
   font-family: "Poppins", sans-serif;
 }
-
-
+.pa_text{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 80%;
+  font-family: "Poppins", sans-serif;
+}
 
 .que_list::-webkit-scrollbar-track
 {
@@ -1612,4 +1689,32 @@ body {
   font-family: "Poppins", sans-serif;
   opacity: 1;
   transition: all 2s; 
+}
+
+.ass_report_for{
+  width: 100%;
+  height: 70%;
+}
+
+.ass_rep_title{
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 2%;
+}
+
+.show_questions{
+  width: 100%;
+  height: 90%;
+  padding: 2%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  overflow-y: auto;
+}
+
+.que_rep_pa{
+  width: 100%;
+  height: 12%;
+  background-color: rgb(238, 238, 238);
+  border-radius: 5px;
+  padding: 1%;
 }

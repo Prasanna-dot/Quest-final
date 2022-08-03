@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/assessment", to: 'home#assessment'
   resources :users
   resources :answers
-  resources :questions
+  resources :questions, only: [:create, :destroy]
 resources :sessions, only: [:new, :create, :destroy]
 get 'signup', to: 'users#new', as: 'signup'
 get 'login', to: 'sessions#new', as: 'login'
@@ -29,6 +29,7 @@ get "/questions", to: 'questions#create',  as: 'create'
 match "/question", :to => "questions#index", :via => :get
 match "/game", :to => "answers#index", :via => :get
 match "/dashbord", :to => "home#dashbord", :via => :get
-get "/delete_question/:id", to: 'questions#delete'
+get "/questions/:id", to: 'questions#destroy'
+get "/dashbord/:title", to: 'home#dashbord'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

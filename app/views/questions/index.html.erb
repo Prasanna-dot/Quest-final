@@ -34,7 +34,7 @@
       <span>Question</span><span><%=con%></span>
     </div>
     <div class="que_btn_div">
-      <a class="que_del_btn" href="/delete_question/<%= count.id %>"><i class="fa-solid fa-trash"></i></a>
+      <a class="que_del_btn" href="/questions/<%= count.id %>" remote="true" method="delete"><i class="fa-solid fa-trash"></i></a>
     </div>
   </div>
   <%end%>
@@ -61,13 +61,13 @@
          <h1><%= que.question %></h1>
       </div>
       <div class="question_cho_div">
-        <div class="choice"><a href=""><%= que.answer %></a></div>
-        <div class="choice"><a href=""><%= que.choice1 %></a></div>
+        <div class="choice"><a><%= que.answer %></a></div>
+        <div class="choice"><a><%= que.choice1 %></a></div>
         <%if que.choice2.present? %>
-        <div class="choice"><a href=""><%= que.choice2 %></a></div>
+        <div class="choice"><a><%= que.choice2 %></a></div>
         <%end%>
         <%if que.choice3.present? %>
-        <div class="choice"><a href=""><%= que.choice3 %></a></div>
+        <div class="choice"><a><%= que.choice3 %></a></div>
         <%end%>
       </div>
     </div>

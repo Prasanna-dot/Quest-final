@@ -27,10 +27,12 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @delque = Question.find(params[:id])
-    if @delque.destroy
-      redirect_to "/question"
+    @delque.destroy
+    respond_to do |format|
+        format.html {redirect_to "/question"}
+        format.js
     end
   end
 

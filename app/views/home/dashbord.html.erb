@@ -33,25 +33,82 @@
     </nav>
 </header>
 
+<div class="report_btns">
+        <button id="ass_rep_btn" onclick="assRepShow()">
+            Assessment Reports
+            <div class="btn_lines" id="ass_rep_lin"></div>
+        </button>
+        <button id="rep_btn" onclick="repShow()">
+            Reports
+            <div class="btn_lines" id="rep_lin"></div>
+        </button>
+</div>
 <div class="das_main">
-    <div class="report_btns">
-        
-    </div>
     <div class="report_div">
         <div class="show_report">
             <div class="question_report">
-                <div class="qreport"></div>
+                <div class="qreport">
+                    <div class="rep_con">
+                        <%=@ques.length%>
+                    </div>
+                    <div class="rep_text">
+                        Questions
+                    </div>
+                </div>
             </div>
             <div class="paticipate_div">
-                <div class="preport"></div>
+                <div class="preport">
+                    <div class="rep_con">
+                        <%=@pat.length%>
+                    </div>
+                    <div class="rep_text">
+                        Participants
+                    </div>
+                </div>
+            </div>
+            <div class="ass_count_div">
+                <div class="ass_count_rep">
+                    <div class="rep_con">
+                        <%=@usersgame.length%>
+                    </div>
+                    <div class="rep_text">
+                        Assessments
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ass_report_for">
+            <div class="ass_rep_title">
+                <%if params[:title] != nil%>
+                Assessment repost for <%=params[:title]%>
+                <%else%>
+                Assessment repost for <%=@usersgame.last.title%>
+                <%end%>
+            </div>
+            <div class="show_questions">
+                <div class="que_rep_pa"></div>
             </div>
         </div>
     </div>
     <div class="name_list_div">
+        <div class="list_ass_main" id="list_ass_main">
+            <%@usersgame.each do |games|%>
+            <a href="/dashbord/<%=games.title%>" class="das_profile_user" id="<%=games.title%>">
+                <h3><%=games.title%></h3>
+                <div class="ass_profile">
+                    <%=Question.where(game_id: games.id, user_id: current_user).length%>
+                </div>
+            </a>
+            <%end%>
+        </div>
         <div class="list_div_main">
             <div class="das_profile_user">
                 <div class="das_user_profile"></div>
-                <h3>Prasanna venkatesh</h3>
+                <div class="pa_text">
+                <h4>Prasanna venkatesh</h4>
+                <h5>Answer: Prasanna</h5>
+                </div>
             </div>
             <div class="das_profile_user">
 
@@ -103,3 +160,32 @@
     color: #2A83E8;
     }
 </style>
+
+
+<script>
+    function assRepShow(){
+       document.getElementById("ass_rep_lin").style.width = "50%"
+       document.getElementById("rep_lin").style.width = "0%"
+       document.getElementById("ass_rep_btn").style.color = "#2a83e8"
+       document.getElementById("rep_btn").style.color = "#000"
+    }
+
+    function repShow(){
+       document.getElementById("ass_rep_lin").style.width = "0%"
+       document.getElementById("rep_lin").style.width = "50%"
+       document.getElementById("ass_rep_btn").style.color = "#000"
+       document.getElementById("rep_btn").style.color = "#2a83e8"
+    }
+
+    function latestAss(){
+        <%if params[:title] != nil%>
+        document.getElementById("<%=params[:title]%>").style.backgroundColor ="#2a83e8";
+        document.getElementById("<%=params[:title]%>").style.color ="#fff";
+        <%else%>
+        document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
+        document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
+        <%end%>
+        }
+
+    latestAss();
+</script>

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController  
   before_action :user_contact, only: %i[index contact]
-  before_action :game_values, only: %i[create_game assessment game]
+  before_action :game_values, only: %i[create_game assessment game dashbord]
   @@question = Hash.new
   @@evaarray = Hash.new
   @@gamearray = Hash.new
@@ -20,6 +20,14 @@ class HomeController < ApplicationController
 
   def dashbord
     @greets = greet
+    if params[:title] != nil
+     @gamess = Game.find_by_title(params[:title])
+     @ques = Question.where(user_id: current_user, game_id: @gamess.id)
+     @pat = Answer.where(games_id: @gamess.id)
+    else
+      @ques = Question.where(user_id: current_user, game_id: @usersgame.last.id)
+      @pat = Answer.where(games_id: @usersgame.last.id)
+    end
   end
 
   def contact

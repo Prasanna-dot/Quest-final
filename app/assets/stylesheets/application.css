@@ -1717,6 +1717,7 @@ body {
   background-color: rgb(238, 238, 238);
   border-radius: 5px;
   padding: 1%;
+  display: flex;
 }
 
 .main_signup_div{
@@ -1840,4 +1841,14 @@ margin-bottom: 5%;
  position: relative;
  width: 100%;
  height: 2vh;
+}
+
+.question_div_show{
+  width: 70%;
+  height: 100%;
+  background-color: #000;
+}
+
+.question_result_show{
+
 }

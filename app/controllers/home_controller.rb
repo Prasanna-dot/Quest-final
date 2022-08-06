@@ -19,15 +19,31 @@ class HomeController < ApplicationController
   end
 
   def dashbord
+    
     @greets = greet
+    if current_user
     if params[:title] != nil
      @gamess = Game.find_by_title(params[:title])
-     @ques = Question.where(user_id: current_user, game_id: @gamess.id)
+     @ques = Question.where(game_id: @gamess.id)
      @pat = Answer.where(games_id: @gamess.id)
-    else
-      @ques = Question.where(user_id: current_user, game_id: @usersgame.last.id)
-      @pat = Answer.where(games_id: @usersgame.last.id)
+     @patarray = Array.new
+     @patlist = Hash.new
+     @pat.each do |pat|
+      @patarray.push(pat.user_id)
+      @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
     end
+    else
+      @ques = Question.where(game_id: @usersgame.last.id)
+      @pat = Answer.where(games_id: @usersgame.last.id)
+      @patarray = Array.new
+      @patlist = Hash.new
+      @pat.each do |pat|
+        @patarray.push(pat.user_id)
+        @patlist.store(pat.question_id,pat.user_id)
+        @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
+      end
+    end
+  end
   end
 
   def contact
@@ -114,8 +130,10 @@ class HomeController < ApplicationController
   end
   
   def game_values
-    @allgames = Game.all
-    @usersgame = Game.where(user_id: current_user)
+    if current_user
+      @allgames = Game.all
+      @usersgame = Game.where(user_id: current_user.id)
+    end
   end
 
   def contact_params

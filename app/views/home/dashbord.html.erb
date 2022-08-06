@@ -5,10 +5,14 @@
             <%= image_tag("quest_logo.png") %>
         </div>
         <div class="filter_div">
+            
             <h2>
                 <span><%= @greets %></span>
+                <%if current_user%>
                 <span><%= current_user.name %></span>
+                <%end%>
             </h2>
+            
         </div>
         <div class="option_div">
             <%if current_user%>
@@ -32,6 +36,8 @@
 
     </nav>
 </header>
+
+<%if current_user%>
 
 <div class="report_btns">
         <button id="ass_rep_btn" onclick="assRepShow()">
@@ -59,7 +65,7 @@
             <div class="paticipate_div">
                 <div class="preport">
                     <div class="rep_con">
-                        <%=@pat.length%>
+                        <%=@patarray.uniq.length%>
                     </div>
                     <div class="rep_text">
                         Participants
@@ -80,18 +86,42 @@
         
         <div class="ass_report_for">
             <div class="ass_rep_title">
-                <%if params[:title] != nil%>
-                Assessment repost for <%=params[:title]%>
-                <%else%>
-                Assessment repost for <%=@usersgame.last.title%>
-                <%end%>
-            </div>
-            <div class="show_questions">
-                <div class="que_rep_pa">
-                <div class="das_user_profile"></div>
-                <div class="question_div_show"></div>
-                <div class="question_result_show"></div>
+                <div class="question_div_show"> 
+                    <%if params[:title] != nil%>
+                        Assessment repost for <%=params[:title]%>
+                    <%else%>
+                        Assessment repost for <%=@usersgame.last.title%>
+                    <%end%>
                 </div>
+                <div class="question_result_show">
+                    <div class="right_div_title">
+                        Right
+                    </div>
+                    <div class="worng_div_title">
+                        Worng
+                    </div>
+                </div>
+            </div>
+            <div class="show_questions" id="show_questions">
+                <%if @ques.present?%>
+                <%@ques.each do |que| %>
+                <button id="que_rep<%=que.id%>" class="que_rep_pa" onclick="showpat(<%=que.id%>)">
+                    <div class="question_div_show">
+                        <%=que.question%>
+                    </div>
+                    <div class="question_result_show">
+                        <%if @pat.present?%>
+                        <div class="right_div_title">
+                            <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: true).length%>
+                        </div>
+                        <div class="worng_div_title">
+                            <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: false).length%>
+                        </div>
+                        <%end%>
+                    </div>
+                </button>
+                <%end%>
+                <%end%>
             </div>
         </div>
     </div>
@@ -106,7 +136,7 @@
             </a>
             <%end%>
         </div>
-        <div class="list_div_main">
+        <div class="list_div_main" id="list_div_main">
             <div class="das_profile_user">
                 <div class="das_user_profile"></div>
                 <div class="pa_text">
@@ -114,7 +144,7 @@
                 <h5>Answer: Prasanna</h5>
                 </div>
             </div>
-            <div class="das_profile_user">
+            <div class="das_profile_user" id="das_profile_user">
 
             </div>
             <div class="das_profile_user">
@@ -189,7 +219,29 @@
         document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
         document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
         <%end%>
+
+        let len = document.getElementById("show_questions").getElementsByClassName("que_rep_pa").length
+        
+        for(let i=0; i<len; i++){
+            document.getElementById("show_questions").getElementsByClassName("que_rep_pa")[i].onclick = function(){
+                // console.log(i);
+                    for(let o=i; o<0; o--){
+                        console.log(o);
+                    }
+                }
+            }
         }
+
+        function showpat(a){
+            document.getElementById(`que_rep${a}`).style.backgroundColor ="#2a83e8";
+            document.getElementById(`que_rep${a}`).style.color ="#fff";
+
+            document.getElementById("das_profile_user").innerHTML = "<%=@patlist[93]%>"
+        }
+
+
 
     latestAss();
 </script>
+
+<%end%>

@@ -1,24 +1,50 @@
-# README
+<p align="center">
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298033-fa15098e-4e06-4218-a15b-1b9d05344f7e.png">
+</p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h1 align="center">About Quest</h1>
+<h2>What is Quest?</h2>
+<p>Quest is an assessment website. where the users can take assessment and create assessment</p>
 
-Things you may want to cover:
+<h2>Why is Quest?</h2>
+<p>Users can test their skills</p>
 
-* Ruby version
+<h2 align="center">User</h2>
+<h3>Signup</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298395-d3512ede-7e2c-4d81-b9b5-11894fff72bf.png">
 
-* System dependencies
+<h3>Login</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298489-867da824-9aa8-4308-b195-8f6cf3fe98bf.png">
 
-* Configuration
+<h3>Forgot password</h3>
+<p align="center">
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298533-afc2be60-57d3-45eb-b95f-a187a9d14cc5.png">
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298576-eabc73b0-9cb0-46ff-9622-10fa6f5ef9d4.png">
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298641-a1a37844-7521-4797-958d-9665b1a6b093.png">
+</p>
 
-* Database creation
+<h2 align="center">Assessment</h2>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298845-a14a4228-142e-4449-b37d-976dacb9aa86.png">
+<h3>Create</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183298863-49e96bba-947b-4cb6-b696-a665cd07b676.png">
+<h3>Start</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299375-cdc0c02b-f8c3-45ed-86ac-aa036d029d6f.png">
+<h3>Game</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299386-d221ebe4-93b6-4812-83db-31d22059a04d.png">
+<h3>Show Question&Timer</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299389-72d3ca7f-e25c-43af-862c-d78b4aeecb39.png">
 
-* Database initialization
+<h2 align="center">Add questions</h2>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299113-fead253d-f233-49d7-a085-d274e29c55f3.png">
+<h3>Add</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299117-88abb1a5-9034-4fc0-9c84-aae11d645aa9.png">
+<h3>List & Delete</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299119-e81f5dc0-f4dc-4543-becb-fd8a2725bc88.png">
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h2 align="center">Dashdoard</h2>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299113-fead253d-f233-49d7-a085-d274e29c55f3.png">
+<h3>Add</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299117-88abb1a5-9034-4fc0-9c84-aae11d645aa9.png">
+<h3>List & Delete</h3>
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299119-e81f5dc0-f4dc-4543-becb-fd8a2725bc88.png">

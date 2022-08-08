@@ -14,12 +14,19 @@
 
 ### Features of Quest :
 
-1. Sign Up            - Completed
-2. Sign In            - Completed
-3. Forgot Password    - Completed
-4. Assessment         - Completed
-5. Add Questions      - Completed
-6. Dashboard          - Completed 
+1. Sign Up                    - Completed
+2. Sign In                    - Completed
+3. Forgot Password            - Completed
+4. Create Assessment          - Completed
+5. Start Assessment           - Completed
+6. Game                       - Completed
+7. Show questions with timer  - Completed
+8. Add Questions              - Completed
+9. List Questions             - Completed
+10. Delete Questions          - Completed
+11. Dashboard                 - Completed 
+12. List Dashboard            - Completed
+13. Delete Dashboard          - Completed     
 
 <h2 align="center">User</h2>
 <h3>Signup</h3>

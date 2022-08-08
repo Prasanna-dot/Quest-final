@@ -12,6 +12,15 @@
 <h2>Why I chose this project?</h2>
 <p>I've always wanted to contribute something for others. I also had interest and some ideas in doing a website like quest.  </p>
 
+### Features of Quest :
+
+1. Sign Up            - Completed
+2. Sign In            - Completed
+3. Forgot Password    - Completed
+4. Assessment         - Completed
+5. Add Questions      - Completed
+6. Dashboard          - Completed 
+
 <h2 align="center">User</h2>
 <h3>Signup</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183298395-d3512ede-7e2c-4d81-b9b5-11894fff72bf.png">

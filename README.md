@@ -7,7 +7,7 @@
 <p>Quest is an assessment website. where the users can take assessment and create assessment</p>
 
 <h2>Why is Quest?</h2>
-<p>Users can test their skills</p>
+<p>Users can test their skills and knowledge.</p>
 
 <h2 align="center">User</h2>
 <h3>Signup</h3>

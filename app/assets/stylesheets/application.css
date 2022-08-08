@@ -1445,6 +1445,15 @@ body {
   display: flex;
 }
 
+.das_rep_main{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 82%;
+  height: 87vh;
+  display: none;
+}
+
 .report_div{
   width: 70%;
   height: 100%;
@@ -1539,6 +1548,12 @@ body {
   padding: 2%;
 }
 
+.name_list_rep{
+  width: 30%;
+  height: 100%;
+  padding: 2%;
+}
+
 .list_div_main{
   width: 100%;
   height: 100%;
@@ -1546,10 +1561,18 @@ body {
   background-color: rgb(234, 234, 234);
   padding: 1% 5%;
   overflow: auto;
-  cursor: pointer;
 }
 
 .list_ass_main{
+  width: 100%;
+  height: 95%;
+  border-radius: 10px;
+  background-color: rgb(234, 234, 234);
+  padding: 1% 5%;
+  overflow: auto;
+}
+
+.list_rep_main{
   width: 100%;
   height: 95%;
   border-radius: 10px;
@@ -1571,6 +1594,36 @@ body {
   cursor: pointer;
   text-decoration: none;
   color: #000;
+}
+
+.das_profile_rep{
+  width: 100%;
+  height: 8%;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6% 0%;
+  padding: 1% 3%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.das_profiles_users{
+  width: 100%;
+  height: 15%;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6% 0%;
+  padding: 1% 3%;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+}
+
+.das_profile_users{
+  display: none;
 }
 
 .list_div_main::-webkit-scrollbar-track
@@ -1601,6 +1654,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .ass_profile{
   width: 40px;
@@ -1619,6 +1673,20 @@ body {
   object-fit: cover;
 }
 .das_profile_user h3{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 80%;
+  font-family: "Poppins", sans-serif;
+}
+
+.das_profile_rep h3{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 80%;
+  font-family: "Poppins", sans-serif;
+}
+
+.das_profile_users h3{
   margin-left: 5%;
   margin-right: 5%;
   width: 80%;

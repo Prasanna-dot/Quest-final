@@ -150,14 +150,12 @@
     <div class="name_list_div">
         <div class="list_ass_main" id="list_ass_main">
             <%@usersgame.each do |games|%>
-            <%if Question.where(game_id: games.id, user_id: current_user).length != 0 && Answer.where(games_id: games.id).length != 0%>
             <a href="/dashboard/<%=games.title%>" class="das_profile_user" id="<%=games.title%>">
                 <h3><%=games.title%></h3>
                 <div class="ass_profile">
                     <%=Question.where(game_id: games.id, user_id: current_user).length%>
                 </div>
             </a>
-            <%end%>
             <%end%>
         </div>
         <div class="list_div_main" id="list_div_main">
@@ -240,13 +238,7 @@
         <div class="ass_report_for">
             <div class="ass_rep_title">
                 <div class="question_div_show"> 
-                    <%if params[:title] != nil%>
-                        Assessment repost for <%=params[:title]%>
-                    <%elsif @usersgame.present?%>
-                        Assessment repost for <%=@usersgame.last.title%>
-                        <%else%>
-                        Assessment repost
-                    <%end%>
+                        Assessment repost of <%=current_user.name%>
                 </div>
                 <div class="question_result_show">
                     <div class="right_div_title">
@@ -258,8 +250,8 @@
                 </div>
             </div>
             <div class="show_questions" id="show_questions">
-                <%if @ques.present?%>
-                <%@ques.each do |que| %>
+                <%if @quess.present?%>
+                <%@quess.each do |que| %>
                 <div id="que_rep" class="que_rep_pa">
                     <div class="question_div_show">
                         <%=que.question%>
@@ -291,15 +283,13 @@
     </div>
     <div class="name_list_rep">
         <div class="list_rep_main" id="list_rep_main">
-            <%@usersgame.each do |games|%>
-            <%if Question.where(game_id: games.id, user_id: current_user).length != 0 && Answer.where(games_id: games.id).length != 0%>
-            <a href="/dashboard/<%=games.title%>" class="das_profile_rep" id="<%=games.title%>">
-                <h3><%=games.title%></h3>
+            <%@usergame.each do |games|%>
+            <a href="/dashboard/<%=Game.find(games.games_id).title%>" class="das_profile_rep" id="<%=Game.find(games.games_id).title%>">
+                <h3><%=Game.find(games.games_id).title%></h3>
                 <div class="ass_profile">
-                    <%=Question.where(game_id: games.id, user_id: current_user).length%>
+                    <%=Question.where(game_id: games.games_id).length%>
                 </div>
             </a>
-            <%end%>
             <%end%>
         </div>
     </div>
@@ -383,26 +373,16 @@
 
     function latestAss(){
         
-    <%if @usersgame.present?%>
+    
         <%if params[:title] != nil%>
             document.getElementById("<%=params[:title]%>").style.backgroundColor ="#2a83e8";
             document.getElementById("<%=params[:title]%>").style.color ="#fff";
         <%else%>
-            document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
-            document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
+            <%if @usersgame.present?%>
+                document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
+                document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
+            <%end%>
         <%end%>
-    <%end%>
-
-        let len = document.getElementById("show_questions").getElementsByClassName("que_rep_pa").length
-        
-        for(let i=0; i<len; i++){
-            document.getElementById("show_questions").getElementsByClassName("que_rep_pa")[i].onclick = function(){
-                // console.log(i);
-                for(let o=i; o<0; o--){
-                    console.log(o);
-                }
-            }
-        }
     }
 
     latestAss();

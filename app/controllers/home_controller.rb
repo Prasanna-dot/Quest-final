@@ -21,6 +21,13 @@ class HomeController < ApplicationController
   def dashboard
     @greets = greet
     if current_user
+      @usergame = Answer.where(user_id: current_user.id)
+      if @usergame.present?
+        if params[:title] != nil
+          @gamess = Game.find_by_title(params[:title])
+          @quess = Question.where(game_id: @gamess.id, user_id: current_user.id)
+        end
+      end
       if @usersgame.present?
     if params[:title] != nil
      @gamess = Game.find_by_title(params[:title])
@@ -45,6 +52,9 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  p"============================================================="
+  p @gamess
 end
   end
 

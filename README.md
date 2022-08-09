@@ -25,8 +25,7 @@
 9. List Questions             - Completed
 10. Delete Questions          - Completed
 11. Dashboard                 - Completed 
-12. List Dashboard            - Completed
-13. Delete Dashboard          - Completed     
+12. List Dashboard            - Completed  
 
 <h2 align="center">User</h2>
 <h3>Signup</h3>

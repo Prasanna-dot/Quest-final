@@ -60,14 +60,9 @@
 <h3>List & Delete</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183299119-e81f5dc0-f4dc-4543-becb-fd8a2725bc88.png">
 
-<<<<<<< HEAD
-* Prasanna
-=======
-
 <h2 align="center">Dashdoard</h2>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183299113-fead253d-f233-49d7-a085-d274e29c55f3.png">
 <h3>Add</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183299117-88abb1a5-9034-4fc0-9c84-aae11d645aa9.png">
 <h3>List & Delete</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183299119-e81f5dc0-f4dc-4543-becb-fd8a2725bc88.png">
->>>>>>> 050ffac60e1fbc0b70ebfda24a5c0b8b3e8c6013

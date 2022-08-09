@@ -1,0 +1,390 @@
+<%= render "header"%>
+<header class="header">
+    <nav>
+        <div class="logo_div">
+            <%= image_tag("quest_logo.png") %>
+        </div>
+        <div class="filter_div">
+            
+            <h2>
+                <span><%= @greets %></span>
+                <%if current_user%>
+                <span><%= current_user.name %></span>
+                <%end%>
+            </h2>
+            
+        </div>
+        <div class="option_div">
+            <%if current_user%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="profile" id ="profile" onclick="profile_show()">
+                      <% if current_user.profile_pic.attached? %>
+    <%= image_tag(current_user.profile_pic) %>
+    <% else %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+            </button>
+    <%else%>
+            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
+            <%= link_to '<button><i class="fa-solid fa-bell"></i></button>'.html_safe, login_path, :class=>"notifi" %>
+            <%= link_to '<button><i class="fa-solid fa-user"></i></button>'.html_safe, login_path, :class=>"profile" %>
+    <%end%>
+            
+        </div>
+        
+
+    </nav>
+</header>
+
+<%if current_user%>
+<div class="report_btns">
+        <button id="ass_rep_btn" onclick="assRepShow()">
+            Assessment Reports
+            <div class="btn_lines" id="ass_rep_lin"></div>
+        </button>
+        <button id="rep_btn" onclick="repShow()">
+            Reports
+            <div class="btn_lines" id="rep_lin"></div>
+        </button>
+</div>
+<div class="das_main" id="das_main">
+    <div class="report_div">
+        <div class="show_report">
+            <div class="question_report">
+                <div class="qreport">
+                    <div class="rep_con">
+                    <%if @ques.present?%>
+                        <%=@ques.length%>
+                        <%else%>
+                        0
+                        <%end%>
+                    </div>
+                    <div class="rep_text">
+                        Questions
+                    </div>
+                </div>
+            </div>
+            <div class="paticipate_div">
+                <div class="preport">
+                    <div class="rep_con">
+                    <%if @patarray.present?%>
+                        <%=@patarray.uniq.length%>
+                        <%else%>
+                        0
+                        <%end%>
+                    </div>
+                    <div class="rep_text">
+                        Participants
+                    </div>
+                </div>
+            </div>
+            <div class="ass_count_div">
+                <div class="ass_count_rep">
+                    <div class="rep_con">
+                    <%if @usersgame.present?%>
+                        <%=@usersgame.length%>
+                        <%else%>
+                        0
+                        <%end%>
+                    </div>
+                    <div class="rep_text">
+                        Assessments
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ass_report_for">
+            <div class="ass_rep_title">
+                <div class="question_div_show"> 
+                    <%if params[:title] != nil%>
+                        Assessment repost for <%=params[:title]%>
+                    <%elsif @usersgame.present?%>
+                        Assessment repost for <%=@usersgame.last.title%>
+                        <%else%>
+                        Assessment repost
+                    <%end%>
+                </div>
+                <div class="question_result_show">
+                    <div class="right_div_title">
+                        Right
+                    </div>
+                    <div class="worng_div_title">
+                        Worng
+                    </div>
+                </div>
+            </div>
+            <div class="show_questions" id="show_questions">
+                <%if @ques.present?%>
+                <%@ques.each do |que| %>
+                <div id="que_rep" class="que_rep_pa">
+                    <div class="question_div_show">
+                        <%=que.question%>
+                    </div>
+                    <div class="question_result_show">
+                        <%if @pat.present?%>
+                        <%if params[:title] == nil%>
+                            <div class="right_div_title">
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: true).length%>
+                            </div>
+                            <div class="worng_div_title">
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: false).length%>
+                            </div>
+                            <%else%>
+                            <div class="right_div_title">
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: true).length%>
+                            </div>
+                            <div class="worng_div_title">
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: false).length%>
+                            </div>
+                        <%end%>
+                        <%end%>
+                    </div>
+                </div>
+                <%end%>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <div class="name_list_div">
+        <div class="list_ass_main" id="list_ass_main">
+            <%@usersgame.each do |games|%>
+            <a href="/dashboard/<%=games.title%>" class="das_profile_user" id="<%=games.title%>">
+                <h3><%=games.title%></h3>
+                <div class="ass_profile">
+                    <%=Question.where(game_id: games.id, user_id: current_user).length%>
+                </div>
+            </a>
+            <%end%>
+        </div>
+        <div class="list_div_main" id="list_div_main">
+        <%if @pat.present?%>
+            <%@pat.each do |pat|%>
+                <div class="das_profile_users">
+                    <%@patlist[pat.question_id].each do |patque|%>
+                        <%if Answer.find(patque).status == true%>
+                            <div class="das_profiles_users" style="background-color: rgb(105, 212, 105);">
+                            <div class="das_user_profile">
+                                <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
+                                    <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
+                                <% else %>
+                                    <i class="fa-solid fa-user"></i>
+                                <% end %>
+                            </div>
+                            <div class="pa_text">
+                                <h4><%=User.find(Answer.find(patque).user_id).name%></h4>
+                                <h5>Answer: <%=Answer.find(patque).user_answer%></h5>
+                            </div>
+                            </div>
+                        <%else%>
+                            <div class="das_profiles_users" style="background-color: rgb(212, 105, 105);">
+                            <div class="das_user_profile">
+                                <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
+                                    <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
+                                <% else %>
+                                    <i class="fa-solid fa-user"></i>
+                                <% end %>
+                            </div>
+                            <div class="pa_text">
+                                <h4><%=User.find(Answer.find(patque).user_id).name%></h4>
+                                <h5>Answer: <%=Answer.find(patque).user_answer%></h5>
+                            </div>
+                            </div>
+                        <%end%>
+                    <%end%>
+                </div>
+            <%end%>
+            <%end%>
+        </div>
+    </div>
+</div>
+
+<div class="das_rep_main" id="das_rep_main">
+    <div class="report_div">
+        <div class="show_report">
+            <div class="question_report">
+                <div class="qreport">
+                    <div class="rep_con">
+                        0
+                    </div>
+                    <div class="rep_text">
+                        score
+                    </div>
+                </div>
+            </div>
+            <div class="paticipate_div">
+                <div class="preport">
+                    <div class="rep_con">
+                        0
+                    </div>
+                    <div class="rep_text">
+                        Participants
+                    </div>
+                </div>
+            </div>
+            <div class="ass_count_div">
+                <div class="ass_count_rep">
+                    <div class="rep_con">
+                        0
+                    </div>
+                    <div class="rep_text">
+                        Assessments
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ass_report_for">
+            <div class="ass_rep_title">
+                <div class="question_div_show"> 
+                        Assessment repost of <%=current_user.name%>
+                </div>
+                <div class="question_result_show">
+                    <div class="right_div_title">
+                        Answer
+                    </div>
+                    <div class="worng_div_title">
+                        Your answer
+                    </div>
+                </div>
+            </div>
+            <div class="show_questions" id="show_questions">
+                <%if @quess.present?%>
+                <%@quess.each do |que| %>
+                <div id="que_rep" class="que_rep_pa">
+                    <div class="question_div_show">
+                        <%=que.question%>
+                    </div>
+                    <div class="question_result_show">
+                        <%if @pat.present?%>
+                        <%if params[:title] == nil%>
+                            <div class="right_div_title">
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: true).length%>
+                            </div>
+                            <div class="worng_div_title">
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: false).length%>
+                            </div>
+                            <%else%>
+                            <div class="right_div_title">
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: true).length%>
+                            </div>
+                            <div class="worng_div_title">
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: false).length%>
+                            </div>
+                        <%end%>
+                        <%end%>
+                    </div>
+                </div>
+                <%end%>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <div class="name_list_rep">
+        <div class="list_rep_main" id="list_rep_main">
+            <%@usergame.each do |games|%>
+            <a href="/dashboard/<%=Game.find(games.games_id).title%>" class="das_profile_rep" id="<%=Game.find(games.games_id).title%>">
+                <h3><%=Game.find(games.games_id).title%></h3>
+                <div class="ass_profile">
+                    <%=Question.where(game_id: games.games_id).length%>
+                </div>
+            </a>
+            <%end%>
+        </div>
+    </div>
+</div>
+
+<%if current_user%>
+  <%= render "profile"%>
+<%end%>
+
+<%end%>
+<style>
+    .main_menu .dashbord_btn{
+    background-color: #fffdf5;
+    color: #2A83E8;
+    }
+</style>
+
+
+<script>
+    function showqa(){
+        let idss = document.getElementById("show_questions")
+        let pats = document.getElementById("list_div_main")
+        let len = idss.getElementsByClassName("que_rep_pa").length
+
+        if((len-1) != -1){
+            idss.getElementsByClassName("que_rep_pa")[len-1].style.backgroundColor = "#2A83E8"
+            idss.getElementsByClassName("que_rep_pa")[len-1].style.color = "#fff"
+            pats.getElementsByClassName("das_profile_users")[len-1].style.display = "block"
+        }
+
+        for(let i=0; i<len; i++){
+            idss.getElementsByClassName("que_rep_pa")[i].onclick = function(){
+                if (idss.getElementsByClassName("que_rep_pa")[i].style.backgroundColor == "#2A83E8") {
+                    idss.getElementsByClassName("que_rep_pa")[i].style.backgroundColor = "rgb(238, 238, 238)";
+                    idss.getElementsByClassName("que_rep_pa")[i].style.color = "#000"
+                    pats.getElementsByClassName("das_profile_users")[i].style.display = "block"
+                }else{
+                    idss.getElementsByClassName("que_rep_pa")[i].style.backgroundColor = "#2A83E8"
+                    idss.getElementsByClassName("que_rep_pa")[i].style.color = "#fff"
+                    pats.getElementsByClassName("das_profile_users")[i].style.display = "block"
+                    if(i==0){
+                        for (let o =(i+1); o<len; o++) {
+                            idss.getElementsByClassName("que_rep_pa")[o].style.backgroundColor = "rgb(238, 238, 238)";
+                            idss.getElementsByClassName("que_rep_pa")[o].style.color = "#000"
+                            pats.getElementsByClassName("das_profile_users")[o].style.display = "none"
+                        }
+                    }else{  
+                        for (let q = (i-1); q >= 0; q--) {
+                            idss.getElementsByClassName("que_rep_pa")[q].style.backgroundColor = "rgb(238, 238, 238)";
+                            idss.getElementsByClassName("que_rep_pa")[q].style.color = "#000"
+                            pats.getElementsByClassName("das_profile_users")[q].style.display = "none"
+                        }
+                        for (let o =(i+1); o<len; o++) {
+                            idss.getElementsByClassName("que_rep_pa")[o].style.backgroundColor = "rgb(238, 238, 238)";
+                            idss.getElementsByClassName("que_rep_pa")[o].style.color = "#000"
+                            pats.getElementsByClassName("das_profile_users")[o].style.display = "none"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function assRepShow(){
+       document.getElementById("ass_rep_lin").style.width = "50%"
+       document.getElementById("rep_lin").style.width = "0%"
+       document.getElementById("ass_rep_btn").style.color = "#2a83e8"
+       document.getElementById("rep_btn").style.color = "#000"
+       document.getElementById("das_main").style.display = "flex"
+       document.getElementById("das_rep_main").style.display = "none"
+    }
+
+    function repShow(){
+       document.getElementById("ass_rep_lin").style.width = "0%"
+       document.getElementById("rep_lin").style.width = "50%"
+       document.getElementById("ass_rep_btn").style.color = "#000"
+       document.getElementById("rep_btn").style.color = "#2a83e8"
+       document.getElementById("das_main").style.display = "none"
+       document.getElementById("das_rep_main").style.display = "flex"
+    }
+
+    function latestAss(){
+        
+    
+        <%if params[:title] != nil%>
+            document.getElementById("<%=params[:title]%>").style.backgroundColor ="#2a83e8";
+            document.getElementById("<%=params[:title]%>").style.color ="#fff";
+        <%else%>
+            <%if @usersgame.present?%>
+                document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
+                document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
+            <%end%>
+        <%end%>
+    }
+
+    latestAss();
+    showqa();
+</script>

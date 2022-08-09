@@ -27,6 +27,7 @@
         </div>
     </nav>
 </header>
+<%if current_user%>
 <div class="ass_alert" id="ass_alert">
   <div class="ass_error">
     <h4>Title is already exist<i class="fa-solid fa-circle-exclamation"></i></h4>
@@ -135,3 +136,5 @@ function alertclose(){
     document.getElementById('create_form').classList.toggle("display");
   }
 </script>
+
+<%end%>

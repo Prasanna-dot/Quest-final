@@ -206,7 +206,7 @@
             <div class="question_report">
                 <div class="qreport">
                     <div class="rep_con">
-                        <%=Answer.where(games_id: @gamess.id, user_id: current_user.id, status: true).length%>/<%=Answer.where(games_id: @gamess.id, user_id: current_user.id).length%>
+                        <%=Answer.where(games_id: @games.id, user_id: current_user.id, status: true).length%>/<%=Answer.where(games_id: @games.id, user_id: current_user.id).length%>
                     </div>
                     <div class="rep_text">
                         score
@@ -266,7 +266,7 @@
                             <div class="right_div_title">
                                 <%=que.answer%>
                             </div>
-                            <%Answer.where(games_id: @gamess.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
+                            <%Answer.where(games_id: @games.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
                             <div class="worng_div_title">
                                 <%=user_answer.user_answer%>
                             </div>
@@ -275,7 +275,7 @@
                             <div class="right_div_title">
                                 <%=que.answer%>
                             </div>
-                            <%Answer.where(games_id: @gamess.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
+                            <%Answer.where(games_id: @games.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
                             <div class="worng_div_title">
                                 <%=user_answer.user_answer%>
                             </div>

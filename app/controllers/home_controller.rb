@@ -28,18 +28,15 @@ class HomeController < ApplicationController
         end
         if @usergame.present?
           if params[:title] != nil
-            @gamess = Game.find_by_title(params[:title])
-            @quess = Question.where(game_id: @gamess.id)
-            @pats = Answer.where(games_id: @gamess.id, user_id: current_user.id)
+            @games = Game.find_by_title(params[:title])
+            @quess = Question.where(game_id: @games.id)
+            @pats = Answer.where(games_id: @games.id, user_id: current_user.id)
           else
-            @gamess = Game.find(@gaarray.uniq.last)
-            @quess = Question.where(game_id: @gamess.id)
-            @pats = Answer.where(games_id: @gamess.id, user_id: current_user.id)
+            @games = Game.find(@gaarray.uniq.last)
+            @quess = Question.where(game_id: @games.id)
+            @pats = Answer.where(games_id: @games.id, user_id: current_user.id)
           end
         end
-
-        p"====================================="
-        p @gamess.id
 
       if @usersgame.present?
         if params[:title] != nil

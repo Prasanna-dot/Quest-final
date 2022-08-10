@@ -21,41 +21,48 @@ class HomeController < ApplicationController
   def dashboard
     @greets = greet
     if current_user
-      @usergame = Answer.where(user_id: current_user.id)
-      if @usergame.present?
+        @usergame = Answer.where(user_id: current_user.id)
+        @gaarray = Array.new
+        @usergame.each do |ga|
+          @gaarray.push(ga.games_id)
+        end
+        if @usergame.present?
+          if params[:title] != nil
+            @games = Game.find_by_title(params[:title])
+            @quess = Question.where(game_id: @games.id)
+            @pats = Answer.where(games_id: @games.id, user_id: current_user.id)
+          else
+            @games = Game.find(@gaarray.uniq.last)
+            @quess = Question.where(game_id: @games.id)
+            @pats = Answer.where(games_id: @games.id, user_id: current_user.id)
+          end
+        end
+
+      if @usersgame.present?
         if params[:title] != nil
           @gamess = Game.find_by_title(params[:title])
-          @quess = Question.where(game_id: @gamess.id, user_id: current_user.id)
+          @ques = Question.where(game_id: @gamess.id)
+          @pat = Answer.where(games_id: @gamess.id)
+          @patarray = Array.new
+          @patlist = Hash.new
+          @pat.each do |pat|
+            @patarray.push(pat.user_id)
+            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
+          end
+        else
+          @gamess = Game.where(user_id: current_user.id)
+          @ques = Question.where(game_id: @usersgame.last.id)
+          @pat = Answer.where(games_id: @usersgame.last.id)
+          @patarray = Array.new
+          @patlist = Hash.new
+          @pat.each do |pat|
+            @patarray.push(pat.user_id)
+            @patlist.store(pat.question_id,pat.user_id)
+            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
+          end
         end
       end
-      if @usersgame.present?
-    if params[:title] != nil
-     @gamess = Game.find_by_title(params[:title])
-     @ques = Question.where(game_id: @gamess.id)
-     @pat = Answer.where(games_id: @gamess.id)
-     @patarray = Array.new
-     @patlist = Hash.new
-     @pat.each do |pat|
-      @patarray.push(pat.user_id)
-      @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
     end
-    else
-      @gamess = Game.where(user_id: current_user.id)
-      @ques = Question.where(game_id: @usersgame.last.id)
-      @pat = Answer.where(games_id: @usersgame.last.id)
-      @patarray = Array.new
-      @patlist = Hash.new
-      @pat.each do |pat|
-        @patarray.push(pat.user_id)
-        @patlist.store(pat.question_id,pat.user_id)
-        @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
-      end
-    end
-  end
-
-  p"============================================================="
-  p @gamess
-end
   end
 
   def contact

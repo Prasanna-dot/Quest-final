@@ -31,5 +31,6 @@ match "/game", :to => "answers#index", :via => :get
 match "/dashboard", :to => "home#dashboard", :via => :get
 get "/questions/:id", to: 'questions#destroy'
 get "/dashboard/:title", to: 'home#dashboard'
+get "/dashboard/:btn/:title", to: 'home#dashboard'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

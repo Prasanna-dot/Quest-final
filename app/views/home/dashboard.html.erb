@@ -153,7 +153,7 @@
             <a href="/dashboard/<%=games.title%>" class="das_profile_user" id="<%=games.title%>">
                 <h3><%=games.title%></h3>
                 <div class="ass_profile">
-                    <%=Question.where(game_id: games.id, user_id: current_user).length%>
+                     <%=@ques.length%>
                 </div>
             </a>
             <%end%>
@@ -206,7 +206,11 @@
             <div class="question_report">
                 <div class="qreport">
                     <div class="rep_con">
+                    <%if @gaarray.present?%>
                         <%=Answer.where(games_id: @games.id, user_id: current_user.id, status: true).length%>/<%=Answer.where(games_id: @games.id, user_id: current_user.id).length%>
+                        <%else%>
+                        0
+                        <%end%>
                     </div>
                     <div class="rep_text">
                         score
@@ -292,7 +296,7 @@
     <div class="name_list_rep">
         <div class="list_rep_main" id="list_rep_main">
             <%@gaarray.uniq.each do |games|%>
-            <a href="/dashboard/<%=Game.find(games).title%>" class="das_profile_rep" id="<%=Game.find(games).title%>">
+            <a href="/dashboard/report/<%=Game.find(games).title%>" class="das_profile_rep" id="report<%=Game.find(games).title%>">
                 <h3><%=Game.find(games).title%></h3>
                 <div class="ass_profile">
                    <%= Question.where(game_id: games).length%>
@@ -391,14 +395,23 @@
                 document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
             <%end%>
             <%if @usergame.present?%>
-                document.getElementById("<%=Game.find(@gaarray.uniq.last).title%>").style.backgroundColor ="#2a83e8";
-                document.getElementById("<%=Game.find(@gaarray.uniq.last).title%>").style.color ="#fff";
+                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.backgroundColor ="#2a83e8";
+                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.color ="#fff";
             <%end%>
         <%end%>
     }
 
     latestAss();
     showqa();
+
+    <%if params[:btn] == "report"%>
+       document.getElementById("ass_rep_lin").style.width = "0%"
+       document.getElementById("rep_lin").style.width = "50%"
+       document.getElementById("ass_rep_btn").style.color = "#000"
+       document.getElementById("rep_btn").style.color = "#2a83e8"
+       document.getElementById("das_main").style.display = "none"
+       document.getElementById("das_rep_main").style.display = "flex"
+    <%end%>
 
     <%if @usergame.present?%>
        document.getElementById("rep_btn").style.display = "block"

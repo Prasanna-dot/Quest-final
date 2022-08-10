@@ -1953,8 +1953,24 @@ margin-bottom: 5%;
   text-overflow: ellipsis "[...]"; 
 }
 
+.question_div_rep{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis "[...]"; 
+}
+
 .question_result_show{
   width: 30%;
+  height: 100%;
+  display: flex;
+}
+
+.question_result_rep{
+  width: 40%;
   height: 100%;
   display: flex;
 }

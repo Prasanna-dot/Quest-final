@@ -60,5 +60,6 @@ end
 gem 'letter_opener', group: :development
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'rubocop', require: false
 gem 'omniauth-google-oauth2'
+
+gem 'rubocop', require: false

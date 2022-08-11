@@ -153,7 +153,7 @@
             <a href="/dashboard/<%=games.title%>" class="das_profile_user" id="<%=games.title%>">
                 <h3><%=games.title%></h3>
                 <div class="ass_profile">
-                     <%=@ques.length%>
+                     <%=Question.where(game_id: games.id).length%>
                 </div>
             </a>
             <%end%>
@@ -386,6 +386,16 @@
     }
 
     function latestAss(){
+        <%if params[:titl] != nil%>
+            document.getElementById("report<%=params[:titl]%>").style.backgroundColor ="#2a83e8";
+            document.getElementById("report<%=params[:titl]%>").style.color ="#fff";
+        <%else%>
+            <%if @usergame.present?%>
+                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.backgroundColor ="#2a83e8";
+                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.color ="#fff";
+            <%end%>
+            <%end%>
+
         <%if params[:title] != nil%>
             document.getElementById("<%=params[:title]%>").style.backgroundColor ="#2a83e8";
             document.getElementById("<%=params[:title]%>").style.color ="#fff";
@@ -393,10 +403,6 @@
             <%if @usersgame.present?%>
                 document.getElementById("<%=@usersgame.last.title%>").style.backgroundColor ="#2a83e8";
                 document.getElementById("<%=@usersgame.last.title%>").style.color ="#fff";
-            <%end%>
-            <%if @usergame.present?%>
-                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.backgroundColor ="#2a83e8";
-                document.getElementById("report<%=Game.find(@gaarray.uniq.last).title%>").style.color ="#fff";
             <%end%>
         <%end%>
     }

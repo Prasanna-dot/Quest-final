@@ -37,14 +37,14 @@ class HomeController < ApplicationController
 
       if @usersgame.present?
         if !params[:title].nil?
-          @gamess = Game.find_by_title(params[:title])
-          @ques = Question.where(game_id: @gamess.id, user_id: current_user.id)
-          @pat = Answer.where(games_id: @gamess.id, user_id: current_user.id)
+          @gamess = Game.where(title: params[:title], user_id: current_user.id)
+          @ques = Question.where(game_id: @gamess.last.id)
+          @pat = Answer.where(games_id: @gamess.last.id)
           @patarray = []
           @patlist = {}
           @pat.each do |pat|
             @patarray.push(pat.user_id)
-            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id, user_id: current_user.id).ids)
+            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
         else
           @gamess = Game.where(user_id: current_user.id)
@@ -55,11 +55,16 @@ class HomeController < ApplicationController
           @pat.each do |pat|
             @patarray.push(pat.user_id)
             @patlist.store(pat.question_id, pat.user_id)
-            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id, user_id: current_user.id).ids)
+            @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
         end
       end
     end
+
+    p"================================================================="
+    p"================================================================="
+    p"================================================================="
+    p params[:btn]
   end
 
   def contact

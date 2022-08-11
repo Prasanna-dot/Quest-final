@@ -133,10 +133,10 @@
                             </div>
                             <%else%>
                             <div class="right_div_title">
-                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: true).length%>
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: true).length%>
                             </div>
                             <div class="worng_div_title">
-                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: false).length%>
+                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: false).length%>
                             </div>
                         <%end%>
                         <%end%>
@@ -237,7 +237,7 @@
                         <%end%>
                     </div>
                     <div class="rep_text">
-                        Assessments
+                        Attend
                     </div>
                 </div>
             </div>
@@ -321,6 +321,42 @@
 
 
 <script>
+    <%if @patarray.uniq.length == 0%>
+       document.getElementById("list_div_main").style.display = "none"
+    <%end%>
+
+    <%if params[:btn] == "report"%>
+       document.getElementById("ass_rep_lin").style.width = "0%"
+       document.getElementById("rep_lin").style.width = "50%"
+       document.getElementById("ass_rep_btn").style.color = "#000"
+       document.getElementById("rep_btn").style.color = "#2a83e8"
+       document.getElementById("das_main").style.display = "none"
+       document.getElementById("das_rep_main").style.display = "flex"
+    <%end%>
+
+    <%if @usergame.present?%>
+       document.getElementById("rep_btn").style.display = "block"
+    <%else%>
+       document.getElementById("ass_rep_lin").style.width = "50%"
+       document.getElementById("rep_lin").style.width = "0%"
+       document.getElementById("ass_rep_btn").style.color = "#2a83e8"
+       document.getElementById("rep_btn").style.color = "#000"
+       document.getElementById("das_main").style.display = "flex"
+       document.getElementById("das_rep_main").style.display = "none"
+       document.getElementById("rep_btn").style.display = "none"
+    <%end%>
+
+    <%if @usersgame.present?%>
+       document.getElementById("ass_rep_btn").style.display = "block"
+    <%else%>
+       document.getElementById("ass_rep_lin").style.width = "0%"
+       document.getElementById("rep_lin").style.width = "50%"
+       document.getElementById("ass_rep_btn").style.color = "#000"
+       document.getElementById("rep_btn").style.color = "#2a83e8"
+       document.getElementById("das_main").style.display = "none"
+       document.getElementById("das_rep_main").style.display = "flex"
+       document.getElementById("ass_rep_btn").style.display = "none"
+    <%end%>
 
 
     function showqa(){
@@ -409,37 +445,4 @@
 
     latestAss();
     showqa();
-
-    <%if params[:btn] == "report"%>
-       document.getElementById("ass_rep_lin").style.width = "0%"
-       document.getElementById("rep_lin").style.width = "50%"
-       document.getElementById("ass_rep_btn").style.color = "#000"
-       document.getElementById("rep_btn").style.color = "#2a83e8"
-       document.getElementById("das_main").style.display = "none"
-       document.getElementById("das_rep_main").style.display = "flex"
-    <%end%>
-
-    <%if @usergame.present?%>
-       document.getElementById("rep_btn").style.display = "block"
-    <%else%>
-       document.getElementById("ass_rep_lin").style.width = "50%"
-       document.getElementById("rep_lin").style.width = "0%"
-       document.getElementById("ass_rep_btn").style.color = "#2a83e8"
-       document.getElementById("rep_btn").style.color = "#000"
-       document.getElementById("das_main").style.display = "flex"
-       document.getElementById("das_rep_main").style.display = "none"
-       document.getElementById("rep_btn").style.display = "none"
-    <%end%>
-
-    <%if @usersgame.present?%>
-       document.getElementById("ass_rep_btn").style.display = "block"
-    <%else%>
-       document.getElementById("ass_rep_lin").style.width = "0%"
-       document.getElementById("rep_lin").style.width = "50%"
-       document.getElementById("ass_rep_btn").style.color = "#000"
-       document.getElementById("rep_btn").style.color = "#2a83e8"
-       document.getElementById("das_main").style.display = "none"
-       document.getElementById("das_rep_main").style.display = "flex"
-       document.getElementById("ass_rep_btn").style.display = "none"
-    <%end%>
 </script>

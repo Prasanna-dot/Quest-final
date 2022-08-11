@@ -32,7 +32,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'dotenv-rails', groups: %i[development test]
 
-gem 'devise'
 gem 'jquery-rails'
 
 group :development, :test do
@@ -60,6 +59,12 @@ end
 gem 'letter_opener', group: :development
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+
+gem 'devise'
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem 'rubocop', require: false
+
+

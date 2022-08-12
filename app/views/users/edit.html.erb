@@ -10,10 +10,12 @@
             <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
             <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
             <button class="profile" id ="profile">
+          <%if @user.present?%>
       <%if @user.profile_pic.attached?%>
       <%= image_tag(@user.profile_pic) %>
       <%else%>
       <i class="fa-solid fa-user"></i>
+      <%end%>
       <%end%>
             </button>
     <%else%>
@@ -30,15 +32,19 @@
     <div class="edit_profile_div" id="edit_profile_div"></div>
     <div class="profile_change">
       <div class="show_profile">
+          <%if @user.present?%>
       <%if @user.profile_pic.attached?%>
       <%= image_tag(@user.profile_pic) %>
       <%else%>
       <i class="fa-solid fa-user"></i>
       <%end%>
+      <%end%>
       </div>
     </div>
     <div class="profile_detial">
+    <%if current_user%>
       <div class="name_profile"><p><%=current_user.name%></p></div>
+    <%end%>
       <div class="contact_div">
         <h3>Contact information</h3>
         <div class="table">
@@ -217,16 +223,19 @@
     <div class="edit_profile_change" id="edit_profile_change">
       <div class="profile_change_edit">
         <div class="show_profile">
-          <%if @user.profile_pic.attached?%>
+          <%if @user.present?%>
+            <%if @user.profile_pic.attached?%>
             <%= image_tag(@user.profile_pic, {id: 'blah_img'}) %>
-          <%else%>
-            <img src id="blah">
-            <i class="fa-solid fa-user" id="without_image"></i>
+            <%else%>
+              <img src id="blah">
+              <i class="fa-solid fa-user" id="without_image"></i>
+            <%end%>
           <%end%>
         </div>
       </div>
       <div class="profile_change_div" id="profile_change_div">
         <div class="profile_change_field">
+        <%if current_user%>
           <%= form_with url: update_path do |form| %>
             <div class="profile_edit_btns">
               <label for="profile_pic">Change profile</label>
@@ -245,6 +254,7 @@
               <button type="submit">Save changes</button>
             </div>
           <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -257,7 +267,7 @@
   
   <script>
 let profile_pic = document.getElementById("profile_pic")
-
+<%if @user.present?%>
 <%if @user.profile_pic.attached?%>
 profile_pic.onchange = evt => {
   const [file] = profile_pic.files
@@ -274,6 +284,7 @@ profile_pic.onchange = evt => {
     blah.src = URL.createObjectURL(file)
   }
 }
+<%end%>
 <%end%>
   
     function edit_profile(){

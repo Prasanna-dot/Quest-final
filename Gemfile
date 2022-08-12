@@ -24,6 +24,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -59,12 +64,4 @@ end
 gem 'letter_opener', group: :development
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem "omniauth-rails_csrf_protection", "~> 1.0"
-
 gem 'rubocop', require: false
-
-

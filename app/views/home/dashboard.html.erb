@@ -295,14 +295,16 @@
     </div>
     <div class="name_list_rep">
         <div class="list_rep_main" id="list_rep_main">
+        <%if @gaarray.present?%>
             <%@gaarray.uniq.each do |games|%>
-            <a href="/dashboard/report/<%=Game.find(games).title%>" class="das_profile_rep" id="report<%=Game.find(games).title%>">
-                <h3><%=Game.find(games).title%></h3>
-                <div class="ass_profile">
-                   <%= Question.where(game_id: games).length%>
-                </div>
-            </a>
+                <a href="/dashboard/report/<%=Game.find(games).title%>" class="das_profile_rep" id="report<%=Game.find(games).title%>">
+                    <h3><%=Game.find(games).title%></h3>
+                    <div class="ass_profile">
+                        <%= Question.where(game_id: games).length%>
+                    </div>
+                </a>
             <%end%>
+        <%end%>
         </div>
     </div>
 </div>
@@ -321,7 +323,7 @@
 
 
 <script>
-    <%if @patarray.uniq.length == 0%>
+    <%if @patarray.present?%>
        document.getElementById("list_div_main").style.display = "none"
     <%end%>
 

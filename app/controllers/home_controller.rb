@@ -16,6 +16,7 @@ class HomeController < ApplicationController
   end
 
   def assessment; end
+  def interview; end
 
   def dashboard
     @greets = greet
@@ -60,11 +61,6 @@ class HomeController < ApplicationController
         end
       end
     end
-
-    p"================================================================="
-    p"================================================================="
-    p"================================================================="
-    p params[:btn]
   end
 
   def contact

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   match '/password_reset', to: 'sessions#password_reset', via: :post
   get '/reset_password', to: 'sessions#reset_password', as: 'reset_password'
   match '/set_password', to: 'sessions#set_password', via: :get
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
   get '/settings', to: 'users#edit', as: 'edit'
   get '/contact', to: 'home#contact', as: 'contact'
   match '/update', to: 'users#update', via: :post
@@ -34,5 +35,6 @@ Rails.application.routes.draw do
   get '/questions/:id', to: 'questions#destroy'
   get '/dashboard/:title', to: 'home#dashboard'
   get '/dashboard/:btn/:titl', to: 'home#dashboard'
+  get '/interview', to: 'home#interview'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

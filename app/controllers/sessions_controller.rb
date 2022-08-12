@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'Logged in!'
+      redirect_to '/login', notice: 'Logged in!'
     else
       flash.now[:alert] = 'Email or password is invalid'
       render 'new'
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out!'
+    redirect_to '/login', notice: 'Logged out!'
   end
 
   def forgot; end
@@ -57,11 +57,15 @@ class SessionsController < ApplicationController
     @us = User.find_by_id(@@useremail[:userid])
     if update_params[:password] == update_params[:password_confirmation]
       @us.update(update_params)
-      redirect_to '/home'
+      redirect_to '/login'
     else
       flash.now[:alert] = 'Passwords are not same'
       render 'reset_password'
     end
+  end
+
+  def omniauth
+    binding.pry
   end
 
   private

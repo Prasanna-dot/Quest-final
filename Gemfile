@@ -24,10 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'dotenv-rails'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+gem 'google_sign_in'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,7 +32,7 @@ gem 'omniauth-rails_csrf_protection'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'dotenv-rails', groups: %i[development test]
+gem 'dotenv-rails'
 
 gem 'jquery-rails'
 

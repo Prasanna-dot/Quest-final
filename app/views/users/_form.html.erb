@@ -1,3 +1,6 @@
+
+<%= google_sign_in_button 'Sign in with my Google account', proceed_to: login_url %>
+
 <%= form_with(model: user) do |form| %>
 
   <div class="field">
@@ -29,7 +32,7 @@
   <% end %>
   </div>
 
-  <div class="actions">
+  <div class="actions"></div>
      <input type="submit" value="Sign up"/>
   </div>
 <% end %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ForgotMailer < ApplicationMailer
   $pin
   def forgot_password

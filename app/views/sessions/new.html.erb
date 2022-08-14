@@ -272,6 +272,8 @@
       </svg>
     </div>
     <div class="singup_form_div">
+<%= google_sign_in_button 'Sign in with my Google account', proceed_to: login_url %>
+
 <%= form_tag sessions_path do |form| %>
  <div class='field'>
    <%= label_tag :email %>
@@ -279,7 +281,7 @@
  </div>
  <div class='field password'>
    <%= label_tag :password %> <%= link_to "Forgot password?", forgot_path , :class=>"forgot"%>
-   <%= password_field_tag :password, "123" %>
+   <%= password_field_tag :password, "P.balaji2001" %>
  </div>
  <%if alert == nil %>
  <p id='alert_login'></p>
@@ -291,6 +293,7 @@
  </div>
 <% end %>
     </div>
+    
 </div>
 
 <style>

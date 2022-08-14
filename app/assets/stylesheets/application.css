@@ -1561,6 +1561,7 @@ body {
   background-color: rgb(234, 234, 234);
   padding: 1% 5%;
   overflow: auto;
+  display: none;
 }
 
 .list_ass_main{

@@ -275,11 +275,11 @@
    <%= label_tag :email %>
    <%= text_field_tag :email %>
  </div>
- <%if alert == nil %>
- <p id='alert'></p>
- <%else%>
-  <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
- <%end%>
+    <%if alert == nil %>
+      <p id='alert_login'></p>
+    <%else%>
+      <p id='alert_login'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
+    <%end%>
  <div class='actions'>
    <%= submit_tag 'Send' %>
  </div>

@@ -272,6 +272,8 @@
       </svg>
     </div>
     <div class="singup_form_div">
+<%= google_sign_in_button 'Sign in with my Google account', proceed_to: login_url %>
+
 <%= form_tag sessions_path do |form| %>
  <div class='field'>
    <%= label_tag :email %>

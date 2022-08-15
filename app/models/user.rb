@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   validates :name, presence: true
-  validates :password, length: { in: 6..8 },
+  validates :password, length: { in: 6..12 },
     unless: Proc.new { |a| a.password.blank? }
   has_secure_password
   validates :email, presence: true, uniqueness: true

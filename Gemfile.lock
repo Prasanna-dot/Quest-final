@@ -111,10 +111,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.6.2)
     jwt (2.4.1)
-    launchy (2.5.0)
-      addressable (~> 2.7)
-    letter_opener (1.8.1)
-      launchy (>= 2.2, < 3)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -265,7 +261,6 @@ DEPENDENCIES
   google_sign_in
   jbuilder (~> 2.7)
   jquery-rails
-  letter_opener
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

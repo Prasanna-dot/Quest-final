@@ -3,16 +3,15 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: 'example.com',
+    domain: 'quest-prasanna.herokuapp.com',
     user_name: 'prasanna.chatbot@gmail.com',
-    password: 'egvvitnlctdpofmu',
+    password: ENV['MAIL_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true
   }

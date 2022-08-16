@@ -66,10 +66,9 @@
   <img width="500" src="https://user-images.githubusercontent.com/83388298/184791526-10fa0399-a11c-4910-adb8-1b8e62cb1296.png">
 
 <h2 align="center">Dashdoard</h2>
-  <img width="500" src="https://user-images.githubusercontent.com/83388298/183299113-fead253d-f233-49d7-a085-d274e29c55f3.png">
   
 <h3>Report</h3>
-  <img width="500" src="https://userimages.githubusercontent.com/83388298/184791605-a4cba6a9-d0a8-4e2a-8333-4f77ef4106e6.png">
-  
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/184791838-ae03d266-8572-482a-9c2a-33a5a8a44e13.png">
+
 <h3>Assessment report</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/184791637-2625c88d-3bcb-447e-9315-e32656571f3e.png">

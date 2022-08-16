@@ -59,12 +59,6 @@
 <h3>List & Delete</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/183299119-e81f5dc0-f4dc-4543-becb-fd8a2725bc88.png">
 
-<h2 align="center">Game</h2>
-  <img width="500" src="https://user-images.githubusercontent.com/83388298/184791445-b49f5e79-13f3-4fc5-baf2-9b17aa5a03bd.png">
-  
-<h3>Show Questions</h3>
-  <img width="500" src="https://user-images.githubusercontent.com/83388298/184791526-10fa0399-a11c-4910-adb8-1b8e62cb1296.png">
-
 <h2 align="center">Dashdoard</h2>
   
 <h3>Report</h3>

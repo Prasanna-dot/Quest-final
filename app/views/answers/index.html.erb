@@ -37,6 +37,17 @@
             </div>
           <%end%>
         <%end%>
+        
+<div class="thank" id="thanks">
+<div class="message">
+  <div class="words">
+      Thank you <%=current_user.name%> for attending the quest. You can see your results on the dashboard. Hope for the best!!
+  </div>
+  <div class="words">
+      <button onclick="finesh()">Ok</button>
+  </div>
+</div>
+</div>
 </div>
 
 <style>
@@ -81,7 +92,7 @@
     }, count);
     }
     if(<%=@answers.length%> == question_count.length){
-      window.location.href = "/assessment"
+      document.getElementById("thanks").style.display="flex";
     }
       timer_time((count/1000)-1);
   }
@@ -98,12 +109,16 @@ function timer_time(seconds) {
       timer_time((count/1000)-1);
         }, count);
     }else{
-      window.location.href = "/assessment"
+      document.getElementById("thanks").style.display="flex";
     }
   }
 
   function sunmitform(o){
     question_count[o].getElementsByClassName("option_display")[0].submit();
+  }
+
+  function finesh(){
+      window.location.href = "/assessment"
   }
 
   next();

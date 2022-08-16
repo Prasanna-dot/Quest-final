@@ -1992,3 +1992,39 @@ margin-bottom: 5%;
 .worng_div_title{
   color: rgb(212, 105, 105);
 }
+
+.thank{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+  background-color: #fff;
+  display: none;
+}
+
+.message{
+  position: relative;
+  width: 40%;
+  font-family: "Poppins", sans-serif;
+}
+
+.words{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.words button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #2A83E8;
+  padding: 2%;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}

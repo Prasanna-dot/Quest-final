@@ -49,8 +49,8 @@ class HomeController < ApplicationController
           end
         else
           @gamess = Game.where(user_id: current_user.id)
-          @ques = Question.where(game_id: @usersgame.last.id, user_id: current_user.id)
-          @pat = Answer.where(games_id: @usersgame.last.id, user_id: current_user.id)
+          @ques = Question.where(game_id: @usersgame.last.id)
+          @pat = Answer.where(games_id: @usersgame.last.id)
           @patarray = []
           @patlist = {}
           @pat.each do |pat|

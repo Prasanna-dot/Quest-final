@@ -133,10 +133,10 @@
                             </div>
                             <%else%>
                             <div class="right_div_title">
-                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: true).length%>
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: true).length%>
                             </div>
                             <div class="worng_div_title">
-                                <%= Answer.where(games_id: @gamess.last.id, question_id: que.id, status: false).length%>
+                                <%= Answer.where(games_id: @gamess.id, question_id: que.id, status: false).length%>
                             </div>
                         <%end%>
                         <%end%>

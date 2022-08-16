@@ -68,7 +68,7 @@
 <h2 align="center">Dashdoard</h2>
   
 <h3>Report</h3>
-  <img width="500" src="https://user-images.githubusercontent.com/83388298/184791838-ae03d266-8572-482a-9c2a-33a5a8a44e13.png">
+  <img width="500" src="https://user-images.githubusercontent.com/83388298/184792118-e72b2886-b292-474a-8fd2-e7f4efcd277f.png">
 
 <h3>Assessment report</h3>
   <img width="500" src="https://user-images.githubusercontent.com/83388298/184791637-2625c88d-3bcb-447e-9315-e32656571f3e.png">

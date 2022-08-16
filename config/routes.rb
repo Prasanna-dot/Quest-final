@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'sessions#new'
   get '/home', to: 'home#index'
   get '/assessment', to: 'home#assessment'
   resources :users

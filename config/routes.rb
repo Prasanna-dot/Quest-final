@@ -31,9 +31,10 @@ Rails.application.routes.draw do
   get '/questions', to: 'questions#create', as: 'create'
   match '/question', to: 'questions#index', via: :get
   match '/game', to: 'answers#index', via: :get
-  match '/dashboard', to: 'home#dashboard', via: :get
+  # match '/dashboard', to: 'home#dashboard', via: :get
   get '/questions/:id', to: 'questions#destroy'
-  get '/dashboard/:title', to: 'home#dashboard', as: :dashboard
+  get '/dashboard/:title', to: 'home#dashboard'
+  # get '/dashboard/:btn/:titl', to: 'home#dashboard'
   get '/interview', to: 'home#interview'
   get 'login/create', to: 'logins#create', as: :create_login
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

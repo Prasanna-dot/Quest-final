@@ -78,11 +78,13 @@
          </div>
       </div>
     </div>
+    <%if current_user%>
     <div class="setting_div">
-      <a href="/settings"><button class="settings_btn">
-        <i class="fa-solid fa-gear"></i> Settings
+      <a href="/logout"><button class="settings_btn">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
       </button></a>
       </div>
+    <%end%>
     </div>
   </div>
 </div>

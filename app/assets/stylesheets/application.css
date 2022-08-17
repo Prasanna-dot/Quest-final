@@ -1315,9 +1315,6 @@ body {
   align-items: center;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
-}
-
-.choice a{
   background-image: linear-gradient(to right, #0d6efd, #61a0ff);
   color: #fff;
 }

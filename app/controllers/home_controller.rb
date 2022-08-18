@@ -15,9 +15,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def assessment; end
-  def interview; end
-
   def dashboard
     @greets = greet
     if current_user

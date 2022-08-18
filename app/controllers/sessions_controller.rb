@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   @@user
   @@useremail = {}
 
-  def new; end
 
   def create
     
@@ -23,7 +22,6 @@ class SessionsController < ApplicationController
     redirect_to '/login', notice: 'Logged out!'
   end
 
-  def forgot; end
 
   def forgot_password
     if params[:email] != ''
@@ -47,7 +45,6 @@ class SessionsController < ApplicationController
     redirect_to '/reset'
   end
 
-  def reset; end
 
   def password_reset
     if params[:code] != ''
@@ -63,7 +60,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def reset_password; end
 
   def set_password
     if !update_params[:password].nil? || !update_params[:password_confirmation].nil?
@@ -79,10 +75,6 @@ class SessionsController < ApplicationController
       flash.now[:alert] = 'Please fill your new password'
       render 'reset_password'
     end
-  end
-
-  def omniauth
-    binding.pry
   end
 
   private

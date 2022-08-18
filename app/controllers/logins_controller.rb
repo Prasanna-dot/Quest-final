@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class LoginsController < ApplicationController
-  def new; end
-
   def create
     user = User.all
     if user = authenticate_with_google

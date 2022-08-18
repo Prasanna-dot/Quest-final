@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions, only: %i[create destroy]
   resources :sessions, only: %i[new create destroy]
+  get '/sessions', to: 'sessions#create'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'

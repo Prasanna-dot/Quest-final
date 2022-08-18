@@ -100,7 +100,7 @@
 function timer_time(seconds) {
     cou++;
     if(cou!=question_count.length+1){
-      var myTimer = setInterval(function () {
+      let myTimer = setInterval(function () {
       timer.innerHTML = seconds--;
     }, 1000);
     

@@ -18,7 +18,7 @@
                 <div class="question_display">
                   <%=gamequestion.question%>
                 </div>
-                <form class="option_display" action="/answers" data_remote="true" method="post">
+                <form class="option_display" action="/answers" data_remote="true" method="post" id="option_display<%=gamequestion.id%>" onsubmit="onclickdisable(<%=gamequestion.id%>)">
                     <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
                     <input type="hidden" name="answer[user_id]" value="<%=current_user.id%>">
                     <input type="hidden" name="answer[question_id]" value="<%=gamequestion.id%>">
@@ -118,7 +118,11 @@ function timer_time(seconds) {
   }
 
   function finesh(){
-      window.location.href = "/assessment"
+    window.location.href = "/assessment"
+  }
+
+  function onclickdisable(a){
+   document.getElementById(`option_display${a}`).style.display = "none";
   }
 
   next();

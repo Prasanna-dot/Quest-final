@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
 
   def create
     @games = Game.find_by_pin(@@gamearray[:pin])
+    @ans = Answer.all
     @answers = Answer.new(answer_params)
     @que = Question.find(answer_params[:question_id])
     @answers[:status] = answer_params[:user_answer] == @que.answer

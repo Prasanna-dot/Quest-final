@@ -85,6 +85,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    email_validator (2.2.3)
+      activemodel
     erubi (1.10.0)
     faraday (2.5.2)
       faraday-net_http (>= 2.0, < 3.1)
@@ -258,6 +260,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   dotenv-rails
+  email_validator
   google_sign_in
   jbuilder (~> 2.7)
   jquery-rails

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     
     user = User.find_by_email(params[:email])
-    if user&.authenticate(params[:password]) || user.password_digest == params[:password]
+    if user&.authenticate(params[:password]) || !user.nil?&&user.password_digest == params[:password]
       session[:user_id] = user.id
       redirect_to '/home', notice: 'Logged in!'
     else

@@ -46,7 +46,7 @@
           
           <%if @userwebsite.blank? %>
           <p><a href="<%=@usercontacts.website%>" target="_blank" style="text-decoration: none"
-                ><i class="fa-solid fa-square-arow-up-right"></i> Website</a
+                ><em class="fa-solid fa-square-arow-up-right"></em> Website</a
               ></p>
           <%end%>
           
@@ -54,22 +54,22 @@
           <p>
           <%if @usergithub.blank?%>
               <a href="<%=@usercontacts.github%>" class="media_link" target="_blank"
-                ><i class="fa-brands fa-github"</i
+                ><em class="fa-brands fa-github"</em
               ></a>
               <%end%>
               <%if @userbehance.blank?%>
               <a href="<%=@usercontacts.behance%>" class="media_link" target="_blank"
-                ><i class="fa-brands fa-behancesquare"></i
+                ><em class="fa-brands fa-behancesquare"></em
               ></a>
               <%end%>
               <%if @userlinkedin.blank?%>
               <a href="<%=@usercontacts.linkedin%>" class="media_link" target="_blank"
-                ><i class="fa-brands fa-linkedi"></i
+                ><em class="fa-brands fa-linkedi"></em
               ></a>
               <%end%>
               <%if @userinstagram.blank?%>
               <a href="<%=@usercontacts.instagram%>" class="media_link" target="_blank"
-                ><i class="fa-brands fa-instagrm-square"></i
+                ><em class="fa-brands fa-instagrm-square"></
               ></a>
               <%end%>
               </p>
@@ -81,7 +81,7 @@
     <%if current_user%>
     <div class="setting_div">
       <a href="/logout"><button class="settings_btn">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        <em class="fa-solid fa-arrow-right-from-bracket"></em> Logout
       </button></a>
       </div>
     <%end%>

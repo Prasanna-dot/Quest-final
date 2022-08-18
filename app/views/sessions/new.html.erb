@@ -276,11 +276,11 @@
 <%= form_tag sessions_path do |form| %>
  <div class='field'>
    <%= label_tag :email %>
-   <%= text_field_tag :email, "prasannavenkatesh20.01.2k1@gmail.com" %>
+   <%= text_field_tag :email%>
  </div>
  <div class='field password'>
    <%= label_tag :password %> <%= link_to "Forgot password?", forgot_path , :class=>"forgot"%>
-   <%= password_field_tag :password, "P.balaji2001" %>
+   <%= password_field_tag :password%>
  </div>
  <%if alert == nil %>
  <p id='alert_login'></p>

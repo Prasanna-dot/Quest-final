@@ -1783,7 +1783,7 @@ body {
 .show_questions::-webkit-scrollbar
 {
 	width: 7px;
-	background-color: transparent;settings_btn 
+	background-color: transparent;
 }
 
 .show_questions::-webkit-scrollbar-thumb

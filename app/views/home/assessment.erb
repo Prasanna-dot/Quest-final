@@ -6,7 +6,7 @@
         </div>
         <div class="filter_div">
           <form action="/game">
-            <input type="text" name="game[pin]" id="pin" placeholder="PIN">
+            <input type="text" name="game[pin]" id="pin" placeholder="PIN" required>
             <button type="submit" class="game"><i class="fa-solid fa-gamepad"></i> Game</button>
           </form>
         </div>
@@ -38,11 +38,10 @@
   <form action="/game_create">
     <input type="text" name="game[title]" id="title" placeholder="Game title" required onchange="check()">
     <select name="game[time]" required>
-      <option>Set time</option>
-      <option value="0.5">00:30 min</option>
+      <option value="0.5" selected>00:30 min</option>
       <option value="1">01:00 min</option>
     </select>
-    <select name="game[result]" required>
+    <select disabled name="game[result]" required>
       <option>Result visibility</option>
       <option value="hidden">Hidden</option>
       <option value="visible">Visible</option>

@@ -32,7 +32,6 @@ class HomeController < ApplicationController
         @quess = Question.where(game_id: @games.id)
         @pats = Answer.where(games_id: @games.id, user_id: current_user.id)
       end
-
       if @usersgame.present?
         if !params[:title].nil?
           @gamess = Game.where(title: params[:title], user_id: current_user.id)
@@ -44,6 +43,9 @@ class HomeController < ApplicationController
             @patarray.push(pat.user_id)
             @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
+
+          p"========================================"
+          p @gamess.last.id
         else
           @gamess = Game.where(user_id: current_user.id)
           @ques = Question.where(game_id: @usersgame.last.id)
@@ -52,9 +54,11 @@ class HomeController < ApplicationController
           @patlist = {}
           @pat.each do |pat|
             @patarray.push(pat.user_id)
-            @patlist.store(pat.question_id, pat.user_id)
             @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
+
+        p"========================================"
+        p @patarray
         end
       end
     end

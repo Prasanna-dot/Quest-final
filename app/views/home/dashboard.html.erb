@@ -162,33 +162,33 @@
         <%if @pat.present?%>
             <%@pat.each do |pat|%>
                 <div class="das_profile_users">
-                    <%@patlist[pat.question_id].each do |patque|%>
-                        <%if Answer.find(patque).status == true%>
+                    <%Answer.where(id: @patlist[pat.id]).each do |patque|%>
+                        <%if patque.status == true%>
                             <div class="das_profiles_users" style="background-color: rgb(105, 212, 105);">
                             <div class="das_user_profile">
-                                <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
-                                    <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
+                                <% if User.find(patque.user_id).profile_pic.attached? %>
+                                    <%= image_tag(User.find(patque.user_id).profile_pic) %>
                                 <% else %>
                                     <em class="fa-solid fa-user"></em>
                                 <% end %>
                             </div>
                             <div class="pa_text">
-                                <h4><%=User.find(Answer.find(patque).user_id).name%></h4>
-                                <h5>Answer: <%=Answer.find(patque).user_answer%></h5>
+                                <h4><%=User.find(patque.user_id).name%></h4>
+                                <h5>Answer: <%=patque.user_answer%></h5>
                             </div>
                             </div>
                         <%else%>
                             <div class="das_profiles_users" style="background-color: rgb(212, 105, 105);">
                             <div class="das_user_profile">
-                                <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
-                                    <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
+                                <% if User.find(patque.user_id).profile_pic.attached? %>
+                                    <%= image_tag(User.find(patque.user_id).profile_pic) %>
                                 <% else %>
                                     <em class="fa-solid fa-user"></em>
                                 <% end %>
                             </div>
                             <div class="pa_text">
-                                <h4><%=User.find(Answer.find(patque).user_id).name%></h4>
-                                <h5>Answer: <%=Answer.find(patque).user_answer%></h5>
+                                <h4><%=User.find(patque.user_id).name%></h4>
+                                <h5>Answer: <%=patque.user_answer%></h5>
                             </div>
                             </div>
                         <%end%>
@@ -364,6 +364,7 @@
 
         for(let i=0; i<len; i++){
             idss.getElementsByClassName("que_rep_pa")[i].onclick = function(){
+                console.log(i);
                 if (idss.getElementsByClassName("que_rep_pa")[i].style.backgroundColor == "#2A83E8") {
                     idss.getElementsByClassName("que_rep_pa")[i].style.backgroundColor = "rgb(238, 238, 238)";
                     idss.getElementsByClassName("que_rep_pa")[i].style.color = "#000"

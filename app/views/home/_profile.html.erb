@@ -6,7 +6,7 @@
                       <% if current_user.profile_pic.attached? %>
     <%= image_tag(current_user.profile_pic) %>
     <% else %>
-    <i class="fa-solid fa-user"></i>
+    <em class="fa-solid fa-user"></em>
   <% end %>
     </div>
   </div>
@@ -45,32 +45,32 @@
           <%end%>
           
           <%if @userwebsite.blank? %>
-          <p><a href="<%=@usercontacts.website%>" target="_blank" style="text-decoration: none"
-                ><em class="fa-solid fa-square-arow-up-right"></em> Website</a
-              ></p>
+          <p><a href="<%=@usercontacts.website%>" target="_blank" style="text-decoration: none">
+            <em class="fa-solid fa-square-arow-up-right"></em> Website</a>
+            </p>
           <%end%>
           
           <%if @userlinkedin.blank? || @userbehance.blank? || @usergithub.blank? || @userinstagram.blank? %>
           <p>
           <%if @usergithub.blank?%>
-              <a href="<%=@usercontacts.github%>" class="media_link" target="_blank"
-                ><em class="fa-brands fa-github"</em
-              ></a>
+              <a href="<%=@usercontacts.github%>" class="media_link" target="_blank">
+                <em class="fa-brands fa-github"></em>
+              </a>
               <%end%>
               <%if @userbehance.blank?%>
-              <a href="<%=@usercontacts.behance%>" class="media_link" target="_blank"
-                ><em class="fa-brands fa-behancesquare"></em
-              ></a>
+              <a href="<%=@usercontacts.behance%>" class="media_link" target="_blank">
+                <em class="fa-brands fa-behancesquare"></em>
+              </a>
               <%end%>
               <%if @userlinkedin.blank?%>
-              <a href="<%=@usercontacts.linkedin%>" class="media_link" target="_blank"
-                ><em class="fa-brands fa-linkedi"></em
-              ></a>
+              <a href="<%=@usercontacts.linkedin%>" class="media_link" target="_blank">
+                <em class="fa-brands fa-linkedi"></em>
+              </a>
               <%end%>
               <%if @userinstagram.blank?%>
-              <a href="<%=@usercontacts.instagram%>" class="media_link" target="_blank"
-                ><em class="fa-brands fa-instagrm-square"></
-              ></a>
+              <a href="<%=@usercontacts.instagram%>" class="media_link" target="_blank">
+                <em class="fa-brands fa-instagrm-square"></em>
+              </a>
               <%end%>
               </p>
           <%end%>

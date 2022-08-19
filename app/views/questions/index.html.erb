@@ -7,12 +7,12 @@
         </div>
         <div class="option_div">
           <%if current_user%>
-            <a href="/assessment" class="create"><i class="fa-solid fa-floppy-disk"></i> Save</a>
+            <a href="/assessment" class="create"><em class="fa-solid fa-floppy-disk"></em> Save</a>
             <button class="profile" id ="profile" onclick="profile_show()">
               <% if current_user.profile_pic.attached? %>
                 <%= image_tag(current_user.profile_pic) %>
               <% else %>
-                <i class="fa-solid fa-user"></i>
+                <em class="fa-solid fa-user"></em>
               <% end %>
             </button>
           <%end%>
@@ -22,7 +22,7 @@
 <%if alert == nil %>
 <p id='alert'></p>
 <%else%>
- <p id='alert'><i class="fa-solid fa-circle-exclamation"></i> <%= alert %></p>
+ <p id='alert'><em class="fa-solid fa-circle-exclamation"></em> <%= alert %></p>
 <%end%>
 <div class="que_list" id="que_list">
   <% if @questions.present?%>
@@ -34,7 +34,7 @@
       <span>Question</span><span><%=con%></span>
     </div>
     <div class="que_btn_div">
-      <a class="que_del_btn" href="/questions/<%= count.id %>" remote="true" method="delete"><i class="fa-solid fa-trash"></i></a>
+      <a class="que_del_btn" href="/questions/<%= count.id %>" remote="true" method="delete"><em class="fa-solid fa-trash"></em></a>
     </div>
   </div>
   <%end%>
@@ -53,7 +53,7 @@
 
     <% if @questions.present?%>
     <button class="list_showhide" onclick="list_btn()">
-        <span class="count_que" id="count_que"><%=@questions.length%></span><i class="fa-solid fa-angle-left" id="btn_i_list"></i>
+        <span class="count_que" id="count_que"><%=@questions.length%></span><em class="fa-solid fa-angle-left" id="btn_i_list"></em>
     </button>
     <% @questions.each do |que|%>
     <div class="question_preview">

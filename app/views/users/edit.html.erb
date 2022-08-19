@@ -8,13 +8,13 @@
         <div class="option_div">
             <%if current_user%>
             <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
-            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="notifi"><span class="notifi_count">1</span><em class="fa-solid fa-bell"></em></button>
             <button class="profile" id ="profile">
           <%if @user.present?%>
       <%if @user.profile_pic.attached?%>
       <%= image_tag(@user.profile_pic) %>
       <%else%>
-      <i class="fa-solid fa-user"></i>
+      <em class="fa-solid fa-user"></em>
       <%end%>
       <%end%>
             </button>
@@ -36,7 +36,7 @@
       <%if @user.profile_pic.attached?%>
       <%= image_tag(@user.profile_pic) %>
       <%else%>
-      <i class="fa-solid fa-user"></i>
+      <em class="fa-solid fa-user"></em>
       <%end%>
       <%end%>
       </div>
@@ -79,7 +79,7 @@
             
             <%if @userwebsite.present? %>
             <p><a href="<%=@userwebsite%>" target="_blank" style="text-decoration: none"
-                  ><i class="fa-solid fa-square-arrow-up-right"></i> Website</a
+                  ><em class="fa-solid fa-square-arrow-up-right"></em> Website</a
                 ></p>
             <%end%>
             
@@ -87,22 +87,22 @@
             <p>
             <%if @usergithub.present?%>
                 <a href="<%=@usergithub%>" class="media_link" target="_blank"
-                  ><i class="fa-brands fa-github"></i
+                  ><em class="fa-brands fa-github"></em
                 ></a>
                 <%end%>
                 <%if @userbehance.present?%>
                 <a href="<%=@userbehance%>" class="media_link" target="_blank"
-                  ><i class="fa-brands fa-behance-square"></i
+                  ><em class="fa-brands fa-behance-square"></em
                 ></a>
                 <%end%>
                 <%if @userlinkedin.present?%>
                 <a href="<%=@userlinkedin%>" class="media_link" target="_blank"
-                  ><i class="fa-brands fa-linkedin"></i
+                  ><em class="fa-brands fa-linkedin"></em
                 ></a>
                 <%end%>
                 <%if @userinstagram.present?%>
                 <a href="<%=@userinstagram%>" class="media_link" target="_blank"
-                  ><i class="fa-brands fa-instagram-square"></i
+                  ><em class="fa-brands fa-instagram-square"></em
                 ></a>
                 <%end%>
                 </p>
@@ -114,7 +114,7 @@
     <%if current_user%>
     <div class="setting_div">
       <a href="/logout"><button class="settings_btn">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        <em class="fa-solid fa-arrow-right-from-bracket"></em> Logout
       </button></a>
       </div>
     <%end%>
@@ -126,16 +126,16 @@
     <div class="edit_change_menu">
       <div class="edit_option_div">
         <button id="edit_profile_btn" class="edit_profile_btn active" onclick="edit_profile()">
-          <i class="fa-solid fa-user-pen"></i> Edit profile
+          <em class="fa-solid fa-user-pen"></em> Edit profile
         </button>
         <button id="edit_contect_btn" class="edit_contect_btn deactive" onclick="edit_contect()">
-          <i class="fa-solid fa-address-book"></i> Contact
+          <em class="fa-solid fa-address-book"></em> Contact
         </button>
         <button id="edit_password_btn" class="edit_password_btn deactive" onclick="change_password()">
-          <i class="fa-solid fa-rotate"></i> Change password
+          <em class="fa-solid fa-rotate"></em> Change password
         </button>
         <button id="edit_notifi_btn" class="edit_notifi_btn deactive" onclick="edit_notifi()">
-          <i class="fa-solid fa-bell"></i> Notification
+          <em class="fa-solid fa-bell"></em> Notification
         </button>
       </div>
     </div>
@@ -230,7 +230,7 @@
             <%= image_tag(@user.profile_pic, {id: 'blah_img'}) %>
             <%else%>
               <img src id="blah">
-              <i class="fa-solid fa-user" id="without_image"></i>
+              <em class="fa-solid fa-user" id="without_image"></em>
             <%end%>
           <%end%>
         </div>

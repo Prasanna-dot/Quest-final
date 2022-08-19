@@ -7,12 +7,12 @@
         <div class="filter_div">
           <form action="/game">
             <input type="text" name="game[pin]" id="pin" placeholder="PIN" required>
-            <button type="submit" class="game"><i class="fa-solid fa-gamepad"></i> Game</button>
+            <button type="submit" class="game"><em class="fa-solid fa-gamepad"></em> Game</button>
           </form>
         </div>
         <div class="option_div">
           <%if current_user%>
-            <button class="create"  onclick="create()"><i class="fa-solid fa-plus"></i> Quest</button>
+            <button class="create"  onclick="create()"><em class="fa-solid fa-plus"></em> Quest</button>
             <button class="profile" id ="profile" onclick="profile_show()">
               <% if current_user.profile_pic.attached? %>
                 <%= image_tag(current_user.profile_pic) %>

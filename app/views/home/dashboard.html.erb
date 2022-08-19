@@ -17,12 +17,12 @@
         <div class="option_div">
             <%if current_user%>
             <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
-            <button class="notifi"><span class="notifi_count">1</span><i class="fa-solid fa-bell"></i></button>
+            <button class="notifi"><span class="notifi_count">1</span><em class="fa-solid fa-bell"></em></button>
             <button class="profile" id ="profile" onclick="profile_show()">
                       <% if current_user.profile_pic.attached? %>
     <%= image_tag(current_user.profile_pic) %>
     <% else %>
-    <i class="fa-solid fa-user"></i>
+    <em class="fa-solid fa-user"></em>
   <% end %>
             </button>
     <%else%>
@@ -169,7 +169,7 @@
                                 <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
                                     <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
                                 <% else %>
-                                    <i class="fa-solid fa-user"></i>
+                                    <em class="fa-solid fa-user"></em>
                                 <% end %>
                             </div>
                             <div class="pa_text">
@@ -183,7 +183,7 @@
                                 <% if User.find(Answer.find(patque).user_id).profile_pic.attached? %>
                                     <%= image_tag(User.find(Answer.find(patque).user_id).profile_pic) %>
                                 <% else %>
-                                    <i class="fa-solid fa-user"></i>
+                                    <em class="fa-solid fa-user"></em>
                                 <% end %>
                             </div>
                             <div class="pa_text">

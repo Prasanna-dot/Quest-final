@@ -21,7 +21,7 @@
   </div>
   <div id="error">
   <% if user.errors.any? %>
-    <i class="fa-solid fa-circle-exclamation"></i><span id="error_explanation">
+    <em class="fa-solid fa-circle-exclamation"></em><span id="error_explanation">
         <% user.errors.each do |error| %>
           <span><%= error.full_message %></span>.
         <% end %>

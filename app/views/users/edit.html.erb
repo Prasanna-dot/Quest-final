@@ -229,7 +229,7 @@
             <%if @user.profile_pic.attached?%>
             <%= image_tag(@user.profile_pic, {id: 'blah_img'}) %>
             <%else%>
-              <img src id="blah">
+              <img src id="blah" alt="profile">
               <em class="fa-solid fa-user" id="without_image"></em>
             <%end%>
           <%end%>

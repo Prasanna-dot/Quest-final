@@ -11,11 +11,19 @@
   </div>
 
   <div class="field">
+    <div class="eye_div_pass">
+      <i class="fa-solid fa-eye" id="eye-open-pass" onclick="eyepass()"></i>
+      <i class="fa-solid fa-eye-slash" id="eye-close-pass" style="display: none;" onclick="eyepass()"></i>
+    </div>
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
 
   <div class="field">
+    <div class="eye_div">
+      <i class="fa-solid fa-eye" id="eye-open" onclick="eyepassword()"></i>
+      <i class="fa-solid fa-eye-slash" id="eye-close" style="display: none;" onclick="eyepassword()"></i>
+    </div>
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
   </div>
@@ -33,3 +41,30 @@
      <input type="submit" value="Sign up"/>
   </div>
 <% end %>
+
+<script>
+
+  function eyepass(){
+    if(document.getElementById("eye-open-pass").style.display == "none"){
+    document.getElementById("eye-open-pass").style.display ="block";
+    document.getElementById("eye-close-pass").style.display = "none";
+    document.getElementById("user_password").type="password";
+    }else if(document.getElementById("eye-close-pass").style.display == "none"){
+    document.getElementById("eye-close-pass").style.display ="block";
+    document.getElementById("eye-open-pass").style.display = "none";
+    document.getElementById("user_password").type="text";
+    }
+  }
+  
+  function eyepassword(){
+    if(document.getElementById("eye-open").style.display == "none"){
+    document.getElementById("eye-open").style.display ="block";
+    document.getElementById("eye-close").style.display = "none";
+    document.getElementById("user_password_confirmation").type="password";
+    }else if(document.getElementById("eye-close").style.display == "none"){
+    document.getElementById("eye-close").style.display ="block";
+    document.getElementById("eye-open").style.display = "none";
+    document.getElementById("user_password_confirmation").type="text";
+    }
+  }
+</script>

@@ -279,6 +279,10 @@
    <%= text_field_tag :email%>
  </div>
  <div class='field password'>
+    <div class="eye_div">
+      <i class="fa-solid fa-eye" id="eye-open-pass" onclick="eyepass()"></i>
+      <i class="fa-solid fa-eye-slash" id="eye-close-pass" style="display: none;" onclick="eyepass()"></i>
+    </div>
    <%= label_tag :password %> <%= link_to "Forgot password?", forgot_path , :class=>"forgot"%>
    <%= password_field_tag :password%>
  </div>
@@ -302,3 +306,17 @@
     color: #2A83E8;
 }
 </style>
+
+<script>
+  function eyepass(){
+    if(document.getElementById("eye-open-pass").style.display == "none"){
+    document.getElementById("eye-open-pass").style.display ="block";
+    document.getElementById("eye-close-pass").style.display = "none";
+    document.getElementById("password").type="password";
+    }else if(document.getElementById("eye-close-pass").style.display == "none"){
+    document.getElementById("eye-close-pass").style.display ="block";
+    document.getElementById("eye-open-pass").style.display = "none";
+    document.getElementById("password").type="text";
+    }
+  }
+</script>

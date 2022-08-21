@@ -1884,6 +1884,34 @@ margin-bottom: 5%;
   font-family: 'Poppins', sans-serif;
 }
 
+.field{
+  position: relative;
+}
+
+.eye_div{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 15%;
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.eye_div_pass{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 15%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .field div{
   display: flex;
 }
@@ -1976,6 +2004,10 @@ margin-bottom: 5%;
 
 .worng_div_title{
   color: rgb(212, 105, 105);
+}
+
+.worng_div_ans{
+  color: rgb(105, 212, 105);
 }
 
 .thank{

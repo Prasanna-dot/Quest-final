@@ -242,7 +242,7 @@
                     <div class="right_div_title">
                         Answer
                     </div>
-                    <div class="worng_div_title">
+                    <div class="worng_div_ans">
                         Your answer
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                                 <%=que.answer%>
                             </div>
                             <%Answer.where(games_id: @games.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
-                            <div class="worng_div_title">
+                            <div class="worng_div_ans">
                                 <%=user_answer.user_answer%>
                             </div>
                             <%end%>

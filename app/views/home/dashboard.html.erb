@@ -238,14 +238,6 @@
                 <div class="question_div_rep"> 
                         Assessment repost of <%=current_user.name%>
                 </div>
-                <div class="question_result_rep">
-                    <div class="right_div_title">
-                        Answer
-                    </div>
-                    <div class="worng_div_ans">
-                        Your answer
-                    </div>
-                </div>
             </div>
             <div class="show_questions" id="show_questions">
                 <%if @quess.present?%>
@@ -257,12 +249,12 @@
                     <div class="question_result_rep">
                         <%if @pats.present?%>
                         <%if params[:title] == nil%>
-                            <div class="right_div_title">
-                                <%=que.answer%>
+                            <div class="right_div_ans">
+                                Answer: <%=que.answer%>
                             </div>
                             <%Answer.where(games_id: @games.id, question_id: que.id, user_id: current_user.id).each do |user_answer|%>
                             <div class="worng_div_ans">
-                                <%=user_answer.user_answer%>
+                                Your answer: <%=user_answer.user_answer%>
                             </div>
                             <%end%>
                             <%else%>

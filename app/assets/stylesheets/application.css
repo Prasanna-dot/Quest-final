@@ -632,6 +632,23 @@ body {
     grid-template-rows: calc(100% / 4)  calc(100% / 4)  calc(100% / 4)  calc(100% / 4);
 }
 
+.assmain_div{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 82%;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.assmain_div h3{
+  width: 40%;
+  text-align: center;
+}
+
 .ass_que {
   width: 100%;
   height: 20vh;
@@ -1795,11 +1812,11 @@ body {
 
 .que_rep_pa{
   width: 100%;
-  height: 12%;
+  height: 20%;
   background-color: rgb(238, 238, 238);
   border-radius: 5px;
   padding: 1%;
-  display: flex;
+  /* display: flex; */
   margin-bottom: 2%;
   border: none;
   outline: none;
@@ -1969,7 +1986,7 @@ margin-bottom: 5%;
 
 .question_div_rep{
   width: 60%;
-  height: 100%;
+  height: 50%;
   display: flex;
   align-items: center;
   white-space: nowrap; 
@@ -1984,8 +2001,8 @@ margin-bottom: 5%;
 }
 
 .question_result_rep{
-  width: 40%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   display: flex;
 }
 
@@ -1998,16 +2015,22 @@ margin-bottom: 5%;
   font-family: "Poppins", sans-serif;
 }
 
+.worng_div_ans, .right_div_ans{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: rgb(93, 93, 93);
+}
+
 .right_div_title{
   color: rgb(105, 212, 105);
 }
 
 .worng_div_title{
   color: rgb(212, 105, 105);
-}
-
-.worng_div_ans{
-  color: rgb(105, 212, 105);
 }
 
 .thank{

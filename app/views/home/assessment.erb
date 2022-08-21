@@ -49,6 +49,13 @@
     <button type="submit">Create</button>
   </form>
 </div>
+
+<%if !@usersgame.present?%>
+<div class="assmain_div">
+  <h3><i class="fa-solid fa-circle-exclamation"></i> Yet to create assessment <span onclick="create()" style="cursor: pointer; color: #2a83e8;"> click here </span> to create assessment</h3>
+</div>
+    
+<%else%>
 <div class="ass_main" id="ass_main">
   <% @usersgame.each do |game|%>
   <div class="ass_que">
@@ -83,6 +90,7 @@
   </div>
   <%end%>
 </div>
+  <%end%>
 
 <%if current_user%>
   <%= render "profile"%>

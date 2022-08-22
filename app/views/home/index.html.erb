@@ -21,8 +21,6 @@
         </div>
         <div class="option_div">
             <%if current_user%>
-            <%= link_to '<button><i class="fa-solid fa-plus"></i></button>'.html_safe, login_path, :class=>"like" %>
-            <button class="notifi"><span class="notifi_count">1</span><em class="fa-solid fa-bell"></em></button>
             <button class="profile" id ="profile" onclick="profile_show()">
                       <% if current_user.profile_pic.attached? %>
     <%= image_tag(current_user.profile_pic) %>

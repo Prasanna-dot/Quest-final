@@ -120,7 +120,7 @@
                     <div class="question_div_show">
                         <%=que.question%>
                     </div>
-                    <div class="question_result_show">
+                    <div class="question_result_show_ans">
                         <%if @pat.present?%>
                         <%if params[:title] == nil%>
                             <div class="right_div_title">
@@ -233,7 +233,7 @@
         
         <div class="ass_report_for">
             <div class="ass_rep_title">
-                <div class="question_div_rep"> 
+                <div class="question_div_rep_ans"> 
                         Assessment repost of <%=current_user.name%>
                 </div>
             </div>

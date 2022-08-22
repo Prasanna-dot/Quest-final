@@ -157,10 +157,11 @@
             <%end%>
         </div>
         <div class="list_div_main" id="list_div_main">
-        <%if @pat.present?%>
-            <%@pat.each do |pat|%>
-                <div class="das_profile_users">
-                    <%Answer.where(id: @patlist[pat.id]).each do |patque|%>
+
+        <%@qarray.uniq.each do |qarry|%>
+            <div class="das_profile_users">
+                <%@patlist[qarry].each do |t|%>
+                    <%Answer.where(id: t).each do |patque|%>                        
                         <%if patque.status == true%>
                             <div class="das_profiles_users" style="background-color: rgb(105, 212, 105);">
                             <div class="das_user_profile">
@@ -191,9 +192,9 @@
                             </div>
                         <%end%>
                     <%end%>
-                </div>
-            <%end%>
-            <%end%>
+                <%end%>
+            </div>
+        <%end%>
         </div>
     </div>
 </div>

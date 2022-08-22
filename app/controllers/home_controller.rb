@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  before_action :user_contact, only: %i[index contact]
+  before_action :user_contact
   before_action :game_values, only: %i[create_game assessment game dashboard]
   @@question = {}
   @@evaarray = {}

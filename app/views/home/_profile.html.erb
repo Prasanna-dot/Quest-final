@@ -21,15 +21,15 @@
           <%end%>
           
           <%if @usercontacts.present? %>
-          <%if @usermobile.blank? %>
+          <%if !@usermobile.blank? %>
           <p>Mobile</p>
           <%end%>
           
-          <%if @userwebsite.blank? %>
+          <%if !@userwebsite.blank? %>
           <p>Site</p>
           <%end%>
           
-          <%if @userlinkedin.blank? || @userbehance.blank? || @usergithub.blank? || @userinstagram.blank? %>
+          <%if !@userlinkedin.blank? || !@userbehance.blank? || !@usergithub.blank? || !@userinstagram.blank? %>
           <p>Social</p>
           <%end%>
           <%end%>
@@ -40,35 +40,35 @@
           <%end%>
           
  <%if @usercontacts.present? %>
-          <%if @usermobile.blank? %>
-          <p><%=@usercontacts.mobile%></p>
+          <%if !@usermobile.blank? %>
+          <p><%=@usermobile%></p>
           <%end%>
           
-          <%if @userwebsite.blank? %>
-          <p><a href="<%=@usercontacts.website%>" target="_blank" style="text-decoration: none">
+          <%if !@userwebsite.blank? %>
+          <p><a href="<%=@userwebsite%>" target="_blank" style="text-decoration: none">
             <em class="fa-solid fa-square-arow-up-right"></em> Website</a>
             </p>
           <%end%>
           
-          <%if @userlinkedin.blank? || @userbehance.blank? || @usergithub.blank? || @userinstagram.blank? %>
+          <%if !@userlinkedin.blank? || !@userbehance.blank? || !@usergithub.blank? || !@userinstagram.blank? %>
           <p>
-          <%if @usergithub.blank?%>
-              <a href="<%=@usercontacts.github%>" class="media_link" target="_blank">
+          <%if !@usergithub.blank?%>
+              <a href="<%=@usergithub%>" class="media_link" target="_blank">
                 <em class="fa-brands fa-github"></em>
               </a>
               <%end%>
-              <%if @userbehance.blank?%>
-              <a href="<%=@usercontacts.behance%>" class="media_link" target="_blank">
+              <%if !@userbehance.blank?%>
+              <a href="<%=@userbehance%>" class="media_link" target="_blank">
                 <em class="fa-brands fa-behancesquare"></em>
               </a>
               <%end%>
-              <%if @userlinkedin.blank?%>
-              <a href="<%=@usercontacts.linkedin%>" class="media_link" target="_blank">
+              <%if !@userlinkedin.blank?%>
+              <a href="<%=@userlinkedin%>" class="media_link" target="_blank">
                 <em class="fa-brands fa-linkedi"></em>
               </a>
               <%end%>
-              <%if @userinstagram.blank?%>
-              <a href="<%=@usercontacts.instagram%>" class="media_link" target="_blank">
+              <%if !@userinstagram.blank?%>
+              <a href="<%=@userinstagram%>" class="media_link" target="_blank">
                 <em class="fa-brands fa-instagrm-square"></em>
               </a>
               <%end%>

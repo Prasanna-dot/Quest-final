@@ -45,18 +45,16 @@ class HomeController < ApplicationController
             @qarray.push(pat.question_id)
             @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
-          p "============================================"
-          p @patlist
-          p @pat.ids
-          p @qarray
         else
           @gamess = Game.where(user_id: current_user.id)
           @ques = Question.where(game_id: @usersgame.last.id)
           @pat = Answer.where(games_id: @usersgame.last.id)
           @patarray = []
+          @qarray = []
           @patlist = {}
           @pat.each do |pat|
             @patarray.push(pat.user_id)
+            @qarray.push(pat.question_id)
             @patlist.store(pat.question_id, Answer.where(question_id: pat.question_id).ids)
           end
 

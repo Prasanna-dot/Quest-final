@@ -131,10 +131,10 @@
                             </div>
                             <%else%>
                             <div class="right_div_title">
-                                <%= Answer.where(games_id: @gamess.ids[0], question_id: que.id, status: true).length%>
+                                <%= Answer.where(games_id: @gamess.ids, question_id: que.id, status: true).length%>
                             </div>
                             <div class="worng_div_title">
-                                <%= Answer.where(games_id: @gamess.ids[0], question_id: que.id, status: false).length%>
+                                <%= Answer.where(games_id: @gamess.ids, question_id: que.id, status: false).length%>
                             </div>
                         <%end%>
                         <%end%>
@@ -157,11 +157,11 @@
             <%end%>
         </div>
         <div class="list_div_main" id="list_div_main">
-
+        <%if @qarray.present?%>
         <%@qarray.uniq.each do |qarry|%>
             <div class="das_profile_users">
                 <%@patlist[qarry].each do |t|%>
-                    <%Answer.where(id: t).each do |patque|%>                        
+                    <%Answer.where(id: t).each do |patque|%>             
                         <%if patque.status == true%>
                             <div class="das_profiles_users" style="background-color: rgb(105, 212, 105);">
                             <div class="das_user_profile">
@@ -194,6 +194,7 @@
                     <%end%>
                 <%end%>
             </div>
+        <%end%>
         <%end%>
         </div>
     </div>
